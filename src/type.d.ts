@@ -1,4 +1,4 @@
-import { ThemedProps } from "@mui/material";
+import { ThemedProps, TypeBackground } from "@mui/material";
 import {
   Typography,
   TypographyStyleOptions,
@@ -14,6 +14,10 @@ interface CustomTypography extends Typography {
   largeAvatar: TypographyStyleOptions;
 }
 
+interface CustomBackground extends Partial<TypeBackground> {
+  main?: string;
+}
+
 declare module "@mui/material/styles" {
   interface ThemeOptions extends ThemedProps {
     typography: CustomTypography;
@@ -24,6 +28,8 @@ declare module "@mui/material/styles" {
     darkTextSecondary: string;
   }
 
+  // interface Partial<TypeBackground> extends CustomBackground {}
+
   interface Theme extends ThemedProps {
     typography: CustomTypography;
   }
@@ -31,5 +37,9 @@ declare module "@mui/material/styles" {
   interface Palette extends PaletteOptions {
     heading: string;
     darkTextSecondary: string;
+  }
+
+  interface TypeBackground extends CustomBackground {
+    main?: string;
   }
 }

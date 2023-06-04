@@ -35,6 +35,7 @@ const NavGroup = ({ item }: NavGroupProps) => {
   return (
     <>
       <List
+        sx={{ pt: 0 }}
         subheader={
           item.title && (
             <Typography

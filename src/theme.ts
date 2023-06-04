@@ -7,8 +7,11 @@ import { Theme, colors, createTheme } from "@mui/material";
       light: "#f7e3c6",
       dark: "#D17B14",
     },
-    heading: colors.grey["900"],
-    darkTextSecondary: colors.grey[100],
+    heading: colors.grey[900],
+    darkTextSecondary: colors.grey[400],
+    background: {
+      main: "#EEF2F6"
+    }
   },
   typography: (theme) => ({
     // can add another font

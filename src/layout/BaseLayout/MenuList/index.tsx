@@ -3,10 +3,8 @@ import { ChipProps, Typography } from "@mui/material";
 
 import { ElementType } from "react";
 import NavGroup from "./NavGroup";
-import { Key } from "tabler-icons-react";
 import { homePagePath, homePageUrl } from "@/pages/home";
-import { Dashboard } from "@mui/icons-material";
-import { UrlPrefixEnum } from "@/enums/url-prefix.enum";
+import { Dashboard, Key } from "@mui/icons-material";
 import { loginPagePath, loginPageUrl } from "@/pages/login";
 
 export interface MenuProps {
@@ -31,7 +29,7 @@ interface MenuItemProps {
 const menuItem: MenuItemProps = {
   items: [
     {
-      id: UrlPrefixEnum.ADMIN,
+      id: "adminDashboard",
       title: "",
       type: "group",
       children: [
@@ -46,7 +44,7 @@ const menuItem: MenuItemProps = {
       ],
     },
     {
-      id: UrlPrefixEnum.ADMIN,
+      id: "adminAuthentication",
       title: "",
       type: "group",
       children: [
@@ -61,13 +59,6 @@ const menuItem: MenuItemProps = {
               title: "Login",
               type: "item",
               url: loginPageUrl,
-            },
-            {
-              id: "register3",
-              title: "Register",
-              type: "item",
-              url: "/pages/register/register3",
-              target: true,
             },
           ],
         },

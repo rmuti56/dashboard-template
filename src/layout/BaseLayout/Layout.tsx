@@ -26,7 +26,7 @@ const Main = styled("main", {
   shouldForwardProp: (prop) => prop !== "open",
 })(({ theme, open }: MainProps) => ({
   ...theme.typography.mainContent,
-  backgroundColor: '#EEF2F6',
+  backgroundColor: theme.palette.background.main,
   borderBottomLeftRadius: 0,
   borderBottomRightRadius: 0,
   transition: theme.transitions.create(
@@ -81,7 +81,11 @@ const BaseLayout = () => {
             : "none",
         }}
       >
-        <Toolbar>
+        <Toolbar
+          sx={{
+            py: 2,
+          }}
+        >
           <Header handleLeftDrawerToggle={handleLeftDrawerToggle} />
         </Toolbar>
       </AppBar>

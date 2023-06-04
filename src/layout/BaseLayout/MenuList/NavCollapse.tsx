@@ -10,12 +10,10 @@ import {
   Typography,
 } from "@mui/material";
 import { useTheme } from "@mui/material/styles";
-
-import NavItem from "./NavItem";
-
 import FiberManualRecordIcon from "@mui/icons-material/FiberManualRecord";
-import { ChevronDown, ChevronUp } from "tabler-icons-react";
+import NavItem from "./NavItem";
 import { MenuProps } from ".";
+import { KeyboardArrowDown, KeyboardArrowUp } from "@mui/icons-material";
 
 interface NavCollapseProps {
   menu: MenuProps;
@@ -137,17 +135,9 @@ const NavCollapse = ({ menu, level }: NavCollapseProps) => {
           }
         />
         {open ? (
-          <ChevronUp
-            stroke="1.5"
-            size="1rem"
-            style={{ marginTop: "auto", marginBottom: "auto" }}
-          />
+          <KeyboardArrowUp sx={{ marginTop: "auto", marginBottom: "auto" }} />
         ) : (
-          <ChevronDown
-            stroke="1.5"
-            size="1rem"
-            style={{ marginTop: "auto", marginBottom: "auto" }}
-          />
+          <KeyboardArrowDown sx={{ marginTop: "auto", marginBottom: "auto" }} />
         )}
       </ListItemButton>
       <Collapse in={open} timeout="auto" unmountOnExit>

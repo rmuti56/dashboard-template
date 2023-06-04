@@ -1,10 +1,11 @@
-import { Box, Chip, Drawer, Stack, useMediaQuery } from "@mui/material";
+import { Box, Drawer, useMediaQuery } from "@mui/material";
 import { useTheme } from "@mui/material/styles";
 
 import { BrowserView, MobileView } from "react-device-detect";
 import PerfectScrollbar from "react-perfect-scrollbar";
 
 import { ConfigEnum } from "@/enums/config.enum";
+import LogoSection from "./LogoSection";
 import MenuCard from "./MenuCard";
 import MenuList from "./MenuList";
 
@@ -20,8 +21,10 @@ const Sidebar = ({ drawerOpen, drawerToggle, window }: SidebarProps) => {
 
   const drawer = (
     <>
-      <Box sx={{ display: { xs: "block", md: "none", } }}>
-        <Box sx={{ display: "flex", p: 2, mx: "auto" }}>LOGO</Box>
+      <Box sx={{ display: { xs: "block", md: "none" } }}>
+        <Box sx={{ display: "flex", p: 2, mx: "auto" }}>
+          <LogoSection />
+        </Box>
       </Box>
       <BrowserView>
         <PerfectScrollbar
