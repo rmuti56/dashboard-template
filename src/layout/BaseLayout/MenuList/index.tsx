@@ -6,7 +6,7 @@ import {
   createProductPagePath,
   createProductPageUrl,
 } from "@/pages/products/create";
-import { Home, PrecisionManufacturing } from "@mui/icons-material";
+import { Category, Home } from "@mui/icons-material";
 import { ElementType } from "react";
 import NavGroup from "./NavGroup";
 import {
@@ -60,7 +60,7 @@ export const menuItem: MenuItemProps = {
           id: "productManagement",
           title: "สินค้า",
           type: "collapse",
-          icon: PrecisionManufacturing,
+          icon: Category,
           url: productsPageUrl,
           children: [
             {

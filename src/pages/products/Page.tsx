@@ -8,6 +8,7 @@ import { Box, Button, LinearProgress } from "@mui/material";
 import { useQuery } from "@tanstack/react-query";
 import { MUIDataTableColumn } from "mui-datatables";
 import { productDetailPageUrl } from "./detail";
+import { formatDateTime } from "@/utils/format-date.util";
 
 const ProductsPage = () => {
   const {
@@ -60,6 +61,9 @@ const ProductsPage = () => {
       name: "description",
       label: "คำอธิบาย",
       options: {
+        setCellProps: () => ({
+          style: { maxWidth: "500px" },
+        }),
         filter: false,
         sort: false,
       },
@@ -82,12 +86,18 @@ const ProductsPage = () => {
       options: {
         filter: false,
         sort: true,
+        setCellProps: () => ({ style: { minWidth: "150px" } }),
+        customBodyRender: (createdAt) => {
+          return formatDateTime(new Date(createdAt));
+        },
       },
     },
     {
       name: "id",
       label: " ",
       options: {
+        filter: false,
+        sort: false,
         customBodyRender: (productId) => {
           return (
             <Box>
