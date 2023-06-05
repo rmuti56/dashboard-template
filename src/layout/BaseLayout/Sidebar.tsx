@@ -1,11 +1,10 @@
+import { DRAWER_WIDTH } from "@/constants/config.constant";
 import { Box, Drawer, useMediaQuery } from "@mui/material";
 import { useTheme } from "@mui/material/styles";
 import { BrowserView, MobileView } from "react-device-detect";
 import PerfectScrollbar from "react-perfect-scrollbar";
-
 import LogoSection from "./LogoSection";
 import MenuList from "./MenuList";
-import { DRAWER_WIDTH } from "@/constants/config.constant";
 
 interface SidebarProps {
   drawerOpen: boolean;

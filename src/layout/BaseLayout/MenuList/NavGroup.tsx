@@ -1,7 +1,6 @@
-import { useTheme } from "@mui/material/styles";
 import { Divider, List, Typography } from "@mui/material";
+import { useTheme } from "@mui/material/styles";
 
-// project imports
 import { MenuProps } from ".";
 import NavCollapse from "./NavCollapse";
 import NavItem from "./NavItem";

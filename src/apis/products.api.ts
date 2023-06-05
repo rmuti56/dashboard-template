@@ -8,7 +8,7 @@ type ProductsQueryKey = [string, CriteriaRequest | DynamicFilter];
 export const getProducts = async ({
   queryKey,
 }: QueryFunctionContext<ProductsQueryKey>) => {
-  const [_, params] = queryKey;
+  const [, params] = queryKey;
   const { data } = await api.get<Product[]>("/products", {
     params,
   });

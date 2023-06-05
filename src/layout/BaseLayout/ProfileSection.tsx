@@ -1,5 +1,10 @@
-import { useEffect, useRef, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import Transitions from "@/components/Transitions";
+import {
+  AccountCircle,
+  Logout,
+  Settings,
+  VerifiedUser,
+} from "@mui/icons-material";
 import {
   Avatar,
   Box,
@@ -16,13 +21,8 @@ import {
   Typography,
 } from "@mui/material";
 import { useTheme } from "@mui/material/styles";
-import Transitions from "@/components/Transitions";
-import {
-  AccountCircle,
-  Logout,
-  Settings,
-  VerifiedUser,
-} from "@mui/icons-material";
+import { useEffect, useRef, useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 const ProfileSection = () => {
   const theme = useTheme();
@@ -180,9 +180,7 @@ const ProfileSection = () => {
                               justifyContent="space-between"
                             >
                               <Grid item>
-                                <Typography variant="body2">
-                                  ทั่วไป
-                                </Typography>
+                                <Typography variant="body2">ทั่วไป</Typography>
                               </Grid>
                               <Grid item>
                                 <Chip

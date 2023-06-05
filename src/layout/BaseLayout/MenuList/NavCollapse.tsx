@@ -1,6 +1,5 @@
-import { ElementType, useEffect, useState } from "react";
-import { useLocation } from "react-router-dom";
-
+import { KeyboardArrowDown, KeyboardArrowUp } from "@mui/icons-material";
+import FiberManualRecordIcon from "@mui/icons-material/FiberManualRecord";
 import {
   Collapse,
   List,
@@ -10,10 +9,10 @@ import {
   Typography,
 } from "@mui/material";
 import { useTheme } from "@mui/material/styles";
-import FiberManualRecordIcon from "@mui/icons-material/FiberManualRecord";
-import NavItem from "./NavItem";
+import { ElementType, useEffect, useState } from "react";
+import { useLocation } from "react-router-dom";
 import { MenuProps } from ".";
-import { KeyboardArrowDown, KeyboardArrowUp } from "@mui/icons-material";
+import NavItem from "./NavItem";
 
 interface NavCollapseProps {
   menu: MenuProps;

@@ -1,4 +1,3 @@
-// material-ui
 import { ChipProps, Typography } from "@mui/material";
 
 import { homePagePath, homePageUrl } from "@/pages/home";
@@ -24,6 +23,7 @@ export interface MenuProps {
   title: string;
   children?: MenuProps[];
   breadcrumbs?: boolean;
+  roles?: string[];
 }
 
 export interface MenuItemProps {

@@ -1,3 +1,6 @@
+import Breadcrumbs from "@/components/Breadcrumbs";
+import { DRAWER_WIDTH } from "@/constants/config.constant";
+import { ChevronRight } from "@mui/icons-material";
 import { AppBar, Box, Toolbar, useMediaQuery } from "@mui/material";
 import {
   StyledComponentProps,
@@ -7,14 +10,9 @@ import {
 } from "@mui/material/styles";
 import { useState } from "react";
 import { Outlet } from "react-router-dom";
-
-// import Breadcrumbs from "ui-component/extended/Breadcrumbs";
 import Header from "./Header";
-import Sidebar from "./Sidebar";
-import { DRAWER_WIDTH } from "@/constants/config.constant";
-import Breadcrumbs from "@/components/Breadcrumbs";
-import { ChevronRight } from "@mui/icons-material";
 import { menuItem } from "./MenuList";
+import Sidebar from "./Sidebar";
 
 interface MainProps extends StyledComponentProps {
   open: boolean;
