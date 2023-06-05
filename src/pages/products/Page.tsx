@@ -37,6 +37,7 @@ const ProductsPage = () => {
       },
     ],
     queryFn: getProducts,
+    useErrorBoundary: true,
   });
 
   const columns: MUIDataTableColumn[] = [

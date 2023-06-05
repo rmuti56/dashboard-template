@@ -170,7 +170,7 @@ const Breadcrumbs: React.FC<BreadcrumbsProps> = ({
             >
               {title && !titleBottom && (
                 <Grid item>
-                  <Typography variant="h4" sx={{ fontWeight: 500 }}>
+                  <Typography variant="h5" sx={{ fontWeight: 500 }}>
                     {item.title}
                   </Typography>
                 </Grid>

@@ -15,3 +15,12 @@ export const getProducts = async ({
 
   return data;
 };
+
+export const getProductDetail = async ({
+  queryKey,
+}: QueryFunctionContext<string[]>) => {
+  const [, productId] = queryKey;
+  const { data } = await api.get<Product>(`/products/${productId}`);
+
+  return data;
+};

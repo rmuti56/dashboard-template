@@ -1,8 +1,12 @@
+import PageErrorBoundary from "@/components/PageErrorBoundary";
 import { UrlPrefixEnum } from "@/enums/url-prefix.enum";
 import BaseLayout from "@/layout/BaseLayout/Layout";
 import HomePage, { homePagePath, homePageUrl } from "@/pages/home";
 import LoginPage, { loginPagePath } from "@/pages/login";
-import ProductsPage, { productsPagePath } from "@/pages/products";
+import ProductsPage, {
+  productsPagePath,
+  productsPageUrl,
+} from "@/pages/products";
 import CreateProductPage, {
   createProductPagePath,
 } from "@/pages/products/create";
@@ -32,7 +36,11 @@ const appRouter = createBrowserRouter([
         children: [
           {
             path: "",
-            element: <ProductsPage />,
+            element: (
+              <PageErrorBoundary>
+                <ProductsPage />
+              </PageErrorBoundary>
+            ),
           },
           {
             path: createProductPagePath,
@@ -40,7 +48,11 @@ const appRouter = createBrowserRouter([
           },
           {
             path: productDetailPagePath,
-            element: <ProductDetailPage />,
+            element: (
+              <PageErrorBoundary backUrl={productsPageUrl}>
+                <ProductDetailPage />
+              </PageErrorBoundary>
+            ),
           },
         ],
       },
