@@ -6,7 +6,7 @@ import {
   createProductPagePath,
   createProductPageUrl,
 } from "@/pages/products/create";
-import { Dashboard, PrecisionManufacturing } from "@mui/icons-material";
+import { Home, PrecisionManufacturing } from "@mui/icons-material";
 import { ElementType } from "react";
 import NavGroup from "./NavGroup";
 import {
@@ -47,7 +47,7 @@ export const menuItem: MenuItemProps = {
           title: "หน้าหลัก",
           type: "item",
           url: homePageUrl,
-          icon: Dashboard,
+          icon: Home,
         },
       ],
     },

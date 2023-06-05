@@ -1,6 +1,7 @@
 import { GRID_SPACING } from "@/constants/config.constant";
 import { MenuItemProps, MenuProps } from "@/layout/BaseLayout/MenuList";
 import { homePageUrl } from "@/pages/home";
+import { isUrlMatched } from "@/utils/url.util";
 import { ChevronRight } from "@mui/icons-material";
 import AccountTreeTwoToneIcon from "@mui/icons-material/AccountTreeTwoTone";
 import HomeIcon from "@mui/icons-material/Home";
@@ -46,7 +47,7 @@ const Breadcrumbs: React.FC<BreadcrumbsProps> = ({
   ...others
 }) => {
   const theme = useTheme();
-  const location = useLocation();
+  const { pathname } = useLocation();
 
   const iconStyle = {
     marginRight: theme.spacing(0.75),
@@ -67,7 +68,7 @@ const Breadcrumbs: React.FC<BreadcrumbsProps> = ({
           if (collapse.type && collapse.type === "collapse") {
             getCollapse(collapse);
           } else if (collapse.type && collapse.type === "item") {
-            if (location.pathname === collapse.url) {
+            if (pathname === collapse.url) {
               setMain(menu);
               setItem(collapse);
             } else {
@@ -77,8 +78,13 @@ const Breadcrumbs: React.FC<BreadcrumbsProps> = ({
             }
           } else if (collapse.type && collapse.type === "hidden") {
             // for detail page
-            setMain(menu);
-            setItem(collapse);
+            if (
+              pathname === collapse.url ||
+              isUrlMatched(collapse.url, pathname)
+            ) {
+              setMain(menu);
+              setItem(collapse);
+            }
           }
           return false;
         });
@@ -91,7 +97,7 @@ const Breadcrumbs: React.FC<BreadcrumbsProps> = ({
       }
       return false;
     });
-  }, [navigation, location.pathname]);
+  }, [navigation, pathname]);
 
   const SeparatorIcon = separator as ElementType;
   const separatorIcon = separator ? <SeparatorIcon /> : <ChevronRight />;
