@@ -9,10 +9,14 @@ import {
 import { Dashboard, PrecisionManufacturing } from "@mui/icons-material";
 import { ElementType } from "react";
 import NavGroup from "./NavGroup";
+import {
+  productDetailPagePath,
+  productDetailPageUrl,
+} from "@/pages/products/detail";
 
 export interface MenuProps {
   id: string;
-  type?: "collapse" | "item" | "group";
+  type?: "collapse" | "item" | "group" | "hidden";
   icon?: ElementType;
   url?: string;
   target?: boolean;
@@ -65,12 +69,23 @@ export const menuItem: MenuItemProps = {
               type: "item",
               url: productsPageUrl,
               breadcrumbs: true,
+              children: [
+                // dynamic path must hide on menu
+                {
+                  id: productDetailPagePath,
+                  title: "รายละเอียดสินค้า",
+                  type: "hidden",
+                  url: productDetailPageUrl(productDetailPagePath),
+                  breadcrumbs: true,
+                },
+              ],
             },
             {
               id: createProductPagePath,
               title: "สร้างสินค้าใหม่",
               type: "item",
               url: createProductPageUrl,
+              breadcrumbs: true,
             },
           ],
         },

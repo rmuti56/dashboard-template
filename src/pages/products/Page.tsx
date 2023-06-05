@@ -3,9 +3,11 @@ import MUIDataTableExtended from "@/components/MUIDataTableExtended";
 import { TABLE_LABEL, TABLE_OPTIONS } from "@/constants/config.constant";
 import useDataTable from "@/hooks/useDataTable";
 import { getKeyFromColumns } from "@/utils/filter.util";
-import { Button, LinearProgress } from "@mui/material";
+import { Visibility } from "@mui/icons-material";
+import { Box, Button, LinearProgress } from "@mui/material";
 import { useQuery } from "@tanstack/react-query";
 import { MUIDataTableColumn } from "mui-datatables";
+import { productDetailPageUrl } from "./detail";
 
 const ProductsPage = () => {
   const {
@@ -80,6 +82,21 @@ const ProductsPage = () => {
       options: {
         filter: false,
         sort: true,
+      },
+    },
+    {
+      name: "id",
+      label: " ",
+      options: {
+        customBodyRender: (productId) => {
+          return (
+            <Box>
+              <Button size="small" href={productDetailPageUrl(productId)}>
+                <Visibility />
+              </Button>
+            </Box>
+          );
+        },
       },
     },
   ];

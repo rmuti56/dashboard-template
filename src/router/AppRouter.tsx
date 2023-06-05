@@ -6,6 +6,8 @@ import ProductsPage, { productsPagePath } from "@/pages/products";
 import CreateProductPage, {
   createProductPagePath,
 } from "@/pages/products/create";
+import { productDetailPagePath } from "@/pages/products/detail";
+import ProductDetailPage from "@/pages/products/detail/Page";
 import { Navigate, createBrowserRouter } from "react-router-dom";
 
 const appRouter = createBrowserRouter([
@@ -35,6 +37,10 @@ const appRouter = createBrowserRouter([
           {
             path: createProductPagePath,
             element: <CreateProductPage />,
+          },
+          {
+            path: productDetailPagePath,
+            element: <ProductDetailPage />,
           },
         ],
       },

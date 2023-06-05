@@ -70,7 +70,15 @@ const Breadcrumbs: React.FC<BreadcrumbsProps> = ({
             if (location.pathname === collapse.url) {
               setMain(menu);
               setItem(collapse);
+            } else {
+              if (collapse.children) {
+                getCollapse(collapse);
+              }
             }
+          } else if (collapse.type && collapse.type === "hidden") {
+            // for detail page
+            setMain(menu);
+            setItem(collapse);
           }
           return false;
         });
@@ -96,10 +104,15 @@ const Breadcrumbs: React.FC<BreadcrumbsProps> = ({
   let ItemIcon;
 
   // collapse item
-  if (main && main.type === "collapse") {
+  if ((main && main.type === "collapse") || (main && item?.type === "hidden")) {
     CollapseIcon = main.icon ? main.icon : AccountTreeTwoToneIcon;
     mainContent = (
-      <Typography component={Link} to="#" variant="subtitle1" sx={linkSX}>
+      <Typography
+        component={Link}
+        to={main.url as string}
+        variant="subtitle1"
+        sx={linkSX}
+      >
         {icons && <CollapseIcon style={iconStyle} />}
         {main.title}
       </Typography>
@@ -107,7 +120,7 @@ const Breadcrumbs: React.FC<BreadcrumbsProps> = ({
   }
 
   // items
-  if (item && item.type === "item") {
+  if ((item && item.type === "item") || item?.type === "hidden") {
     itemTitle = item.title;
 
     ItemIcon = item.icon ? item.icon : AccountTreeTwoToneIcon;

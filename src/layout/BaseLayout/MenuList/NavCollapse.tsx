@@ -13,6 +13,7 @@ import { ElementType, useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
 import { MenuProps } from ".";
 import NavItem from "./NavItem";
+import { isUrlMatched } from "@/utils/url.util";
 
 interface NavCollapseProps {
   menu: MenuProps;
@@ -38,7 +39,7 @@ const NavCollapse = ({ menu, level }: NavCollapseProps) => {
     if (menu.children) {
       const checkOpenForParent = (child: MenuProps[], id: string) => {
         child.forEach((item) => {
-          if (item.url === pathname) {
+          if (item.url === pathname || isUrlMatched(item.url, pathname)) {
             setOpen(true);
             setSelected(id);
           }
