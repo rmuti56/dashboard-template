@@ -1,5 +1,5 @@
 import { configureStore } from "@reduxjs/toolkit";
-import menuReducer, { MenuState } from "./slices/menu-slice";
+import menuReducer, { MenuState } from "./slices/menu.slice";
 
 export type RootState = {
   menu: MenuState;

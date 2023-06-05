@@ -20,7 +20,7 @@ import {
 import { useTheme } from "@mui/material/styles";
 
 import { RootState } from "@/store";
-import { MenuState, menuOpen, setMenu } from "@/store/slices/menu-slice";
+import { MenuState, menuOpen, setMenu } from "@/store/slices/menu.slice";
 import FiberManualRecordIcon from "@mui/icons-material/FiberManualRecord";
 import { MenuProps } from ".";
 
