@@ -160,7 +160,7 @@ const ProfileSection = () => {
                         <ListItemText
                           primary={
                             <Typography variant="body2">
-                              Account Settings
+                              ตั้งค่าบัญชี
                             </Typography>
                           }
                         />
@@ -181,7 +181,7 @@ const ProfileSection = () => {
                             >
                               <Grid item>
                                 <Typography variant="body2">
-                                  Social Profile
+                                  ทั่วไป
                                 </Typography>
                               </Grid>
                               <Grid item>
@@ -207,7 +207,7 @@ const ProfileSection = () => {
                         </ListItemIcon>
                         <ListItemText
                           primary={
-                            <Typography variant="body2">Logout</Typography>
+                            <Typography variant="body2">ออกจากระบบ</Typography>
                           }
                         />
                       </ListItemButton>

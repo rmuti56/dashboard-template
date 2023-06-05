@@ -1,6 +1,6 @@
-import { Theme, colors, createTheme } from "@mui/material";
+import { Components, Theme, colors, createTheme } from "@mui/material";
 
- const appTheme = createTheme({
+const appTheme = createTheme({
   palette: {
     primary: {
       main: "#f5a13b",
@@ -10,8 +10,8 @@ import { Theme, colors, createTheme } from "@mui/material";
     heading: colors.grey[900],
     darkTextSecondary: colors.grey[400],
     background: {
-      main: "#EEF2F6"
-    }
+      main: "#EEF2F6",
+    },
   },
   typography: (theme) => ({
     // can add another font
@@ -65,38 +65,50 @@ import { Theme, colors, createTheme } from "@mui/material";
   },
 });
 
-// components override 
-const componentStyleOverrides = (theme: Theme) => ({
-    MuiListItemButton: {
-        styleOverrides: {
-          root: {
-            color: theme.palette.text.primary,
-            borderRadius: theme.shape.borderRadius,
-            paddingTop: '10px',
-            paddingBottom: '10px',
-            '&.Mui-selected': {
-              color: theme.palette.primary.dark,
-              backgroundColor: theme.palette.primary.light,
-              '&:hover': {
-                backgroundColor: theme.palette.primary.light,
-              },
-              '& .MuiListItemIcon-root': {
-                color: theme.palette.primary.dark,
-              }
-            },
-            '&:hover': {
-              backgroundColor: theme.palette.primary.light,
-              color: theme.palette.primary.dark,
-              '& .MuiListItemIcon-root': {
-                color: theme.palette.primary.dark,
-              }
-            }
-          }
-        }
+// components override
+const componentStyleOverrides = (theme: Theme): Components<Theme> => ({
+  MuiListItemButton: {
+    styleOverrides: {
+      root: {
+        color: theme.palette.text.primary,
+        borderRadius: theme.shape.borderRadius,
+        paddingTop: "10px",
+        paddingBottom: "10px",
+        "&.Mui-selected": {
+          color: theme.palette.primary.dark,
+          backgroundColor: theme.palette.primary.light,
+          "&:hover": {
+            backgroundColor: theme.palette.primary.light,
+          },
+          "& .MuiListItemIcon-root": {
+            color: theme.palette.primary.dark,
+          },
+        },
+        "&:hover": {
+          backgroundColor: theme.palette.primary.light,
+          color: theme.palette.primary.dark,
+          "& .MuiListItemIcon-root": {
+            color: theme.palette.primary.dark,
+          },
+        },
       },
-  
-    })
+    },
+  },
+  MuiCard: {
+    defaultProps: {
+      elevation: 0,
+    },
+  },
+  MuiPopover: {
+    styleOverrides: {
+      paper: {
+        padding: 8,
+      },
+    },
+  },
+});
 
-appTheme.components = componentStyleOverrides(appTheme)
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+appTheme.components = componentStyleOverrides(appTheme) as any;
 
-export default appTheme
+export default appTheme;

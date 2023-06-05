@@ -40,7 +40,7 @@ export const menuItem: MenuItemProps = {
       children: [
         {
           id: homePagePath,
-          title: "Dashboard",
+          title: "หน้าหลัก",
           type: "item",
           url: homePageUrl,
           icon: Dashboard,
@@ -54,21 +54,21 @@ export const menuItem: MenuItemProps = {
       children: [
         {
           id: "productManagement",
-          title: "Product",
+          title: "สินค้า",
           type: "collapse",
           icon: PrecisionManufacturing,
           url: productsPageUrl,
           children: [
             {
               id: productsPagePath,
-              title: "Product List",
+              title: "รายการสินค้า",
               type: "item",
               url: productsPageUrl,
               breadcrumbs: true,
             },
             {
               id: createProductPagePath,
-              title: "Create Product",
+              title: "สร้างสินค้าใหม่",
               type: "item",
               url: createProductPageUrl,
             },
