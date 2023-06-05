@@ -1,11 +1,15 @@
 // material-ui
 import { ChipProps, Typography } from "@mui/material";
 
+import { homePagePath, homePageUrl } from "@/pages/home";
+import { productsPagePath, productsPageUrl } from "@/pages/products";
+import {
+  createProductPagePath,
+  createProductPageUrl,
+} from "@/pages/products/create";
+import { Dashboard, PrecisionManufacturing } from "@mui/icons-material";
 import { ElementType } from "react";
 import NavGroup from "./NavGroup";
-import { homePagePath, homePageUrl } from "@/pages/home";
-import { Dashboard, Key } from "@mui/icons-material";
-import { loginPagePath, loginPageUrl } from "@/pages/login";
 
 export interface MenuProps {
   id: string;
@@ -19,14 +23,15 @@ export interface MenuProps {
   chip?: ChipProps;
   title: string;
   children?: MenuProps[];
-  breadcrumbs?: any;
+  breadcrumbs?: boolean;
 }
 
-interface MenuItemProps {
+export interface MenuItemProps {
   items: MenuProps[];
 }
 
-const menuItem: MenuItemProps = {
+// eslint-disable-next-line react-refresh/only-export-components
+export const menuItem: MenuItemProps = {
   items: [
     {
       id: "adminDashboard",
@@ -39,26 +44,33 @@ const menuItem: MenuItemProps = {
           type: "item",
           url: homePageUrl,
           icon: Dashboard,
-          breadcrumbs: false,
         },
       ],
     },
     {
-      id: "adminAuthentication",
+      id: "adminProduct",
       title: "",
       type: "group",
       children: [
         {
-          id: "authentication",
-          title: "Authentication",
+          id: "productManagement",
+          title: "Product",
           type: "collapse",
-          icon: Key,
+          icon: PrecisionManufacturing,
+          url: productsPageUrl,
           children: [
             {
-              id: loginPagePath,
-              title: "Login",
+              id: productsPagePath,
+              title: "Product List",
               type: "item",
-              url: loginPageUrl,
+              url: productsPageUrl,
+              breadcrumbs: true,
+            },
+            {
+              id: createProductPagePath,
+              title: "Create Product",
+              type: "item",
+              url: createProductPageUrl,
             },
           ],
         },

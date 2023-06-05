@@ -11,11 +11,10 @@ import { Outlet } from "react-router-dom";
 // import Breadcrumbs from "ui-component/extended/Breadcrumbs";
 import Header from "./Header";
 import Sidebar from "./Sidebar";
-
-// assets
-import { ConfigEnum } from "@/enums/config.enum";
-
-const drawerWidth = ConfigEnum.DRAWER_WIDTH;
+import { DRAWER_WIDTH } from "@/constants/config.constant";
+import Breadcrumbs from "@/components/Breadcrumbs";
+import { ChevronRight } from "@mui/icons-material";
+import { menuItem } from "./MenuList";
 
 interface MainProps extends StyledComponentProps {
   open: boolean;
@@ -42,17 +41,17 @@ const Main = styled("main", {
         }
   ),
   [theme.breakpoints.up("md")]: {
-    marginLeft: open ? 0 : -(drawerWidth - 20),
-    width: `calc(100% - ${drawerWidth}px)`,
+    marginLeft: open ? 0 : -(DRAWER_WIDTH - 20),
+    width: `calc(100% - ${DRAWER_WIDTH}px)`,
   },
   [theme.breakpoints.down("md")]: {
     marginLeft: "20px",
-    width: `calc(100% - ${drawerWidth}px)`,
+    width: `calc(100% - ${DRAWER_WIDTH}px)`,
     padding: "16px",
   },
   [theme.breakpoints.down("sm")]: {
     marginLeft: "10px",
-    width: `calc(100% - ${drawerWidth}px)`,
+    width: `calc(100% - ${DRAWER_WIDTH}px)`,
     padding: "16px",
     marginRight: "10px",
   },
@@ -96,14 +95,13 @@ const BaseLayout = () => {
       />
 
       <Main theme={theme} open={leftDrawerOpened}>
-        {/* breadcrumb */}
-        {/* <Breadcrumbs
+        <Breadcrumbs
           separator={ChevronRight}
-          navigation={navigation}
+          navigation={menuItem}
           icon
           title
           rightAlign
-        /> */}
+        />
         <Outlet />
       </Main>
     </Box>

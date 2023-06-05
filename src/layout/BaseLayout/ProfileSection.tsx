@@ -35,6 +35,7 @@ const ProfileSection = () => {
     console.log("Logout");
   };
 
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const handleClose = (event: any) => {
     if (anchorRef.current && anchorRef.current.contains(event.target)) {
       return;
@@ -42,6 +43,7 @@ const ProfileSection = () => {
     setOpen(false);
   };
 
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const handleListItemClick = (event: any, index: number, route = "") => {
     setSelectedIndex(index);
     handleClose(event);

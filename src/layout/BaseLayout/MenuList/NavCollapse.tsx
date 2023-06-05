@@ -1,5 +1,5 @@
 import { ElementType, useEffect, useState } from "react";
-import { useLocation, useNavigate } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 
 import {
   Collapse,
@@ -22,7 +22,6 @@ interface NavCollapseProps {
 
 const NavCollapse = ({ menu, level }: NavCollapseProps) => {
   const theme = useTheme();
-  const navigate = useNavigate();
 
   const [open, setOpen] = useState(false);
   const [selected, setSelected] = useState<string | null>(null);
@@ -30,9 +29,6 @@ const NavCollapse = ({ menu, level }: NavCollapseProps) => {
   const handleClick = () => {
     setOpen(!open);
     setSelected(!selected ? menu.id : null);
-    if (menu?.id !== "authentication") {
-      navigate(menu.children?.[0]?.url as string);
-    }
   };
 
   const { pathname } = useLocation();
