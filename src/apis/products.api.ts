@@ -1,9 +1,9 @@
 import api from "@/libs/api";
-import { CriteriaRequest } from "@/types/criteria-request.type";
+import { CriteriaRequest, DynamicFilter } from "@/types/criteria-request.type";
 import { Product } from "@/types/product.type";
 import { QueryFunctionContext } from "@tanstack/react-query";
 
-type ProductsQueryKey = [string, CriteriaRequest];
+type ProductsQueryKey = [string, CriteriaRequest | DynamicFilter];
 
 export const getProducts = async ({
   queryKey,

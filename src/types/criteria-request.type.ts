@@ -7,3 +7,13 @@ export type CriteriaRequest = {
   sortBy?: string;
   order?: SortDirection;
 };
+
+export type DynamicFilter = {
+  [key: string]: string | string[];
+};
+
+export type KeyFromColumns = {
+  [key: number]: string;
+};
+
+export type FilterList = string[][];

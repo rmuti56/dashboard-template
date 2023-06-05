@@ -5,7 +5,12 @@ const appTheme = createTheme({
     primary: {
       main: "#f5a13b",
       light: "#f7e3c6",
-      dark: "#D17B14",
+      dark: "#d17b14",
+    },
+    secondary: {
+      main: "#3b8ff5",
+      light: "#81b2f9",
+      dark: "#0e57c3",
     },
     heading: colors.grey[900],
     darkTextSecondary: colors.grey[400],

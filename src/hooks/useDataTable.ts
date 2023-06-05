@@ -1,5 +1,10 @@
 import { LIMIT } from "@/constants/config.constant";
-import { SortDirection } from "@/types/criteria-request.type";
+import {
+  DynamicFilter,
+  KeyFromColumns,
+  SortDirection,
+} from "@/types/criteria-request.type";
+import { getFilterRequest } from "@/utils/filter.util";
 import { debounce } from "@mui/material";
 import { useState } from "react";
 
@@ -17,6 +22,7 @@ const useDataTable = (
   const [search, setSearch] = useState("");
   const [sortBy, setSortBy] = useState("");
   const [order, setOrder] = useState<SortDirection>("asc");
+  const [filter, setFilter] = useState<DynamicFilter>({});
 
   const handlePageChange = (currentPage: number) => {
     setCurrentPage(currentPage);
@@ -38,16 +44,29 @@ const useDataTable = (
     setOrder(order);
   };
 
+  const handleFilter = (
+    filterList: string[][],
+    keyFromColumns: KeyFromColumns
+  ) => {
+    const filter = getFilterRequest(filterList, keyFromColumns);
+    setFilter(filter);
+    setCurrentPage(0);
+  };
+
+  const debouncedFilter = debounce(handleFilter, 100);
+
   return {
     currentPage,
     pageSize,
     search,
     sortBy,
     order,
+    filter,
     handlePageChange,
     handlePageSizeChange,
     handleSearch: debouncedSearch,
     handleSort,
+    handleFilter: debouncedFilter,
   };
 };
 
