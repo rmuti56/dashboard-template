@@ -190,7 +190,7 @@ const ProductsPage = () => {
         confirmFilters: true,
         customFilterDialogFooter: (_, applyNewFilters) => {
           return (
-            <div style={{ marginTop: "40px" }}>
+            <Box mt={3}>
               <Button
                 variant="contained"
                 onClick={() => {
@@ -200,7 +200,7 @@ const ProductsPage = () => {
               >
                 ปรับใช้
               </Button>
-            </div>
+            </Box>
           );
         },
         onChangePage: handlePageChange,

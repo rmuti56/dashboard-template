@@ -28,8 +28,6 @@ declare module "@mui/material/styles" {
     darkTextSecondary: string;
   }
 
-  // interface Partial<TypeBackground> extends CustomBackground {}
-
   interface Theme extends ThemedProps {
     typography: CustomTypography;
   }

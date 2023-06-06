@@ -6,7 +6,9 @@ export const GRID_SPACING = 3;
 
 export const API_URL = import.meta.env.VITE_API_URL;
 
-export const LIMIT = 20;
+export const IS_DEV = process.env.NODE_ENV === 'development'
+
+export const LIMIT = 10;
 
 export const SEARCH_DEBOUNCE = 500;
 

@@ -3,6 +3,7 @@ import menuReducer, { MenuState } from "./slices/menu.slice";
 import confirmationReducer, {
   ConfirmationState,
 } from "./slices/confirmation.slice";
+import { IS_DEV } from "@/constants/config.constant";
 
 export type RootState = {
   menu: MenuState;
@@ -19,7 +20,7 @@ const store = configureStore({
     getDefaultMiddleware({
       serializableCheck: false,
     }),
-  devTools: true,
+  devTools: IS_DEV,
 });
 
 export default store;
