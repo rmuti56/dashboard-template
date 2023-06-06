@@ -19,7 +19,6 @@ interface ResetBoundaryProps {
 const ResetBoundary = ({ reset }: ResetBoundaryProps) => {
   const { pathname } = useLocation();
   const didMount = useRef(1);
-  console.log('test')
 
   useEffect(() => {
     if (didMount.current >= 3) {
@@ -58,7 +57,6 @@ const PageErrorBoundary = ({
                     พบข้อผิดพลาด
                   </Typography>
                 </Box>
-
                 <Box display="flex" gap={1} alignItems="center">
                   <Button href={backUrl}>
                     <ArrowBackIos /> ไปยังหน้าหลัก

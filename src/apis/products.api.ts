@@ -24,3 +24,9 @@ export const getProductDetail = async ({
 
   return data;
 };
+
+export const deleteProduct = async (productId: string) => {
+  const { data } = await api.delete(`/products/${productId}a`);
+
+  return data;
+};

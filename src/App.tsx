@@ -6,6 +6,7 @@ import queryClient from "./libs/query";
 import appRouter from "./router/AppRouter";
 import store from "./store";
 import appTheme from "./theme";
+import ConfirmationDialog from "./components/ConfirmDialog";
 
 function App() {
   return (
@@ -13,6 +14,7 @@ function App() {
       <StoreProvider store={store}>
         <ThemeProvider theme={appTheme}>
           <CssBaseline />
+          <ConfirmationDialog />
           <RouterProvider router={appRouter} />
         </ThemeProvider>
       </StoreProvider>

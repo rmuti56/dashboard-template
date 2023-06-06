@@ -1,14 +1,22 @@
-import { getProducts } from "@/apis/products.api";
+import { deleteProduct, getProducts } from "@/apis/products.api";
 import MUIDataTableExtended from "@/components/MUIDataTableExtended";
 import { TABLE_LABEL, TABLE_OPTIONS } from "@/constants/config.constant";
 import useDataTable from "@/hooks/useDataTable";
 import { getKeyFromColumns } from "@/utils/filter.util";
-import { Visibility } from "@mui/icons-material";
-import { Box, Button, LinearProgress } from "@mui/material";
-import { useQuery } from "@tanstack/react-query";
+import { Delete, Visibility } from "@mui/icons-material";
+import {
+  Box,
+  Button,
+  CircularProgress,
+  Divider,
+  IconButton,
+  LinearProgress,
+} from "@mui/material";
+import { useMutation, useQuery } from "@tanstack/react-query";
 import { MUIDataTableColumn } from "mui-datatables";
 import { productDetailPageUrl } from "./detail";
 import { formatDateTime } from "@/utils/format-date.util";
+import useConfirm from "@/hooks/useConfirm";
 
 const ProductsPage = () => {
   const {
@@ -24,7 +32,7 @@ const ProductsPage = () => {
     handleSort,
     handleFilter,
   } = useDataTable();
-  const { isLoading, data } = useQuery({
+  const { isLoading, data, refetch } = useQuery({
     queryKey: [
       "products",
       {
@@ -39,8 +47,42 @@ const ProductsPage = () => {
     queryFn: getProducts,
     useErrorBoundary: true,
   });
+  const { confirm, confirmSuccess, confirmError } = useConfirm();
+  const deleteMutation = useMutation({
+    mutationKey: ["deleteProduct"],
+    mutationFn: deleteProduct,
+    onSuccess: () => {
+      refetch();
+      confirmSuccess({});
+    },
+    onError: () => {
+      confirmError({});
+    },
+  });
+
+  const handleShowConfirmDelete = (productId: string) => {
+    confirm({
+      onConfirm: () => handleConfirmDeleteProduct(productId),
+      message: `ยืนยันการลบสินค้าหมายเลข #${productId}`,
+      confirmButtonProps: {
+        color: "error",
+      },
+    });
+  };
+
+  const handleConfirmDeleteProduct = (productId: string) => {
+    deleteMutation.mutate(productId);
+  };
 
   const columns: MUIDataTableColumn[] = [
+    {
+      name: "id",
+      label: "หมายเลข",
+      options: {
+        filter: false,
+        sort: false,
+      },
+    },
     {
       name: "name",
       label: "ชื่อ",
@@ -101,10 +143,24 @@ const ProductsPage = () => {
         sort: false,
         customBodyRender: (productId) => {
           return (
-            <Box>
-              <Button size="small" href={productDetailPageUrl(productId)}>
-                <Visibility />
-              </Button>
+            <Box display="flex" gap={1}>
+              <IconButton size="small" href={productDetailPageUrl(productId)}>
+                <Visibility color="primary" />
+              </IconButton>
+              <Divider orientation="vertical" flexItem />
+              <IconButton
+                title="ลบ"
+                size="small"
+                onClick={() => handleShowConfirmDelete(productId)}
+                disabled={deleteMutation.isLoading}
+              >
+                {deleteMutation.variables === productId &&
+                deleteMutation.isLoading ? (
+                  <CircularProgress size={16} color="error" />
+                ) : (
+                  <Delete color="error" />
+                )}
+              </IconButton>
             </Box>
           );
         },

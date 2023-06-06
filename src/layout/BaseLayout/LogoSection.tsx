@@ -20,7 +20,7 @@ const LogoSection = () => {
     >
       <Avatar src="/vite.svg" />
       <Typography variant="h6" sx={{ ml: 1 }}>
-        TGC
+        {/* TGC */}
       </Typography>
     </ButtonBase>
   );
