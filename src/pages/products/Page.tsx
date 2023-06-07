@@ -1,4 +1,4 @@
-import { deleteProduct, getProducts } from "@/apis/products.api";
+import { deleteProduct, getProducts } from "@/apis/product.api";
 import MUIDataTableExtended from "@/components/MUIDataTableExtended";
 import { TABLE_LABEL, TABLE_OPTIONS } from "@/constants/config.constant";
 import useDataTable from "@/hooks/useDataTable";

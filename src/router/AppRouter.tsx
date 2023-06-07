@@ -20,16 +20,16 @@ const appRouter = createBrowserRouter([
     element: <Navigate to={homePageUrl} replace />,
   },
   {
+    path: `${UrlPrefixEnum.ADMIN}/${loginPagePath}`,
+    element: <LoginPage />,
+  },
+  {
     path: UrlPrefixEnum.ADMIN,
     element: <BaseLayout />,
     children: [
       {
         path: homePagePath,
         element: <HomePage />,
-      },
-      {
-        path: loginPagePath,
-        element: <LoginPage />,
       },
       {
         path: productsPagePath,

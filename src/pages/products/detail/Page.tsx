@@ -1,4 +1,4 @@
-import { getProductDetail, getProductOptions } from "@/apis/products.api";
+import { getProductDetail, getProductOptions } from "@/apis/product.api";
 import PageContainer from "@/components/PageContainer";
 import PageLoading from "@/components/PageLoading";
 import { MenuItem, TextField, Typography } from "@mui/material";
