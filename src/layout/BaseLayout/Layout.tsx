@@ -14,10 +14,10 @@ import Header from "./Header";
 import { menuItem } from "./MenuList";
 import Sidebar from "./Sidebar";
 
-interface MainProps extends StyledComponentProps {
+type MainProps = StyledComponentProps & {
   open: boolean;
   theme: Theme;
-}
+};
 
 const Main = styled("main", {
   shouldForwardProp: (prop) => prop !== "open",

@@ -5,13 +5,13 @@ import { MenuProps } from ".";
 import NavCollapse from "./NavCollapse";
 import NavItem from "./NavItem";
 
-interface NavGroupProps {
+type NavGroupProps = {
   item: {
     title?: string;
     caption?: string;
     children?: MenuProps[];
   };
-}
+};
 
 const NavGroup = ({ item }: NavGroupProps) => {
   const theme = useTheme();

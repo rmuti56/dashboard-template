@@ -1,11 +1,11 @@
 import { homePagePath } from "@/pages/home";
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
-export interface MenuState {
+export type MenuState = {
   isOpen: string[];
   defaultId: string;
   opened: boolean;
-}
+};
 
 const initialState: MenuState = {
   isOpen: [],

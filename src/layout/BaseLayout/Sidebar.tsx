@@ -6,11 +6,11 @@ import PerfectScrollbar from "react-perfect-scrollbar";
 import LogoSection from "./LogoSection";
 import MenuList from "./MenuList";
 
-interface SidebarProps {
+type SidebarProps = {
   drawerOpen: boolean;
   drawerToggle: () => void;
   window?: Window;
-}
+};
 
 const Sidebar = ({ drawerOpen, drawerToggle, window }: SidebarProps) => {
   const theme = useTheme();

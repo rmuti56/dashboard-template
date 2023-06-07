@@ -7,14 +7,14 @@ import { ErrorBoundary } from "react-error-boundary";
 import PageContainer from "./PageContainer";
 import { useLocation } from "react-router-dom";
 
-interface PageErrorBoundaryProps {
+type PageErrorBoundaryProps = {
   children: ReactNode;
   backUrl?: string;
-}
+};
 
-interface ResetBoundaryProps {
+type ResetBoundaryProps = {
   reset: () => void;
-}
+};
 
 const ResetBoundary = ({ reset }: ResetBoundaryProps) => {
   const { pathname } = useLocation();

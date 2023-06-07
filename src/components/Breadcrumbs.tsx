@@ -12,7 +12,7 @@ import { useTheme } from "@mui/material/styles";
 import { ElementType, useEffect, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 
-interface BreadcrumbsProps {
+type BreadcrumbsProps = {
   card?: boolean;
   divider?: boolean;
   icon?: boolean;
@@ -23,7 +23,7 @@ interface BreadcrumbsProps {
   separator?: ElementType;
   title?: boolean;
   titleBottom?: boolean;
-}
+};
 
 const linkSX = {
   display: "flex",

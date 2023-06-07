@@ -4,9 +4,9 @@ import { useTheme } from "@mui/material/styles";
 import LogoSection from "./LogoSection";
 import ProfileSection from "./ProfileSection";
 
-interface HeaderProps {
+type HeaderProps = {
   handleLeftDrawerToggle?: () => void;
-}
+};
 
 const Header = ({ handleLeftDrawerToggle }: HeaderProps): JSX.Element => {
   const theme = useTheme();

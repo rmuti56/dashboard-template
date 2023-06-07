@@ -1,9 +1,9 @@
 import { Box, Card } from "@mui/material";
 import { ReactNode } from "react";
 
-interface PageContainerProps {
+type PageContainerProps = {
   children: ReactNode;
-}
+};
 
 const PageContainer = ({ children }: PageContainerProps) => {
   return (

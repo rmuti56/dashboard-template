@@ -1,9 +1,10 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { ButtonProps } from "@mui/material";
 import { ReactNode } from "react";
 import { firstIfDefined } from "@/utils/assign.util";
 
-export interface ConfirmationState {
+export type ConfirmationState = {
   isOpen: boolean;
   message: ReactNode;
   onConfirm?: () => void;
@@ -12,7 +13,7 @@ export interface ConfirmationState {
   title?: string;
   cancelText?: string;
   confirmText?: string;
-}
+};
 
 export type OpenConfirmPayload = Partial<ConfirmationState>;
 
@@ -46,12 +47,10 @@ const confirmationSlice = createSlice({
       state.onConfirm = onConfirm;
 
       // optional values
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
       state.cancelButtonProps = firstIfDefined<any>(
         cancelButtonProps,
         initialState.cancelButtonProps
       );
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
       state.confirmButtonProps = firstIfDefined<any>(
         confirmButtonProps,
         initialState.confirmButtonProps

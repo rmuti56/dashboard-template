@@ -24,10 +24,10 @@ import { MenuState, menuOpen, setMenu } from "@/store/slices/menu.slice";
 import FiberManualRecordIcon from "@mui/icons-material/FiberManualRecord";
 import { MenuProps } from ".";
 
-interface NavItemProps {
+type NavItemProps = {
   item: MenuProps;
   level: number;
-}
+};
 
 const NavItem = ({ item, level }: NavItemProps) => {
   const theme = useTheme();

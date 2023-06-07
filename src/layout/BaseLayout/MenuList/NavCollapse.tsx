@@ -15,10 +15,10 @@ import { MenuProps } from ".";
 import NavItem from "./NavItem";
 import { isUrlMatched } from "@/utils/url.util";
 
-interface NavCollapseProps {
+type NavCollapseProps = {
   menu: MenuProps;
   level: number;
-}
+};
 
 const NavCollapse = ({ menu, level }: NavCollapseProps) => {
   const theme = useTheme();

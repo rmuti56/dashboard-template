@@ -8,9 +8,9 @@ import { getFilterRequest } from "@/utils/filter.util";
 import { debounce } from "@mui/material";
 import { useState } from "react";
 
-interface UseDataTableProps {
+type UseDataTableProps = {
   searchDebounceDelay?: number;
-}
+};
 
 const useDataTable = (
   { searchDebounceDelay }: UseDataTableProps = {

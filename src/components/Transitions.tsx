@@ -1,7 +1,7 @@
 import { forwardRef, ReactNode, Ref } from "react";
 import { Collapse, Fade, Box, Grow, Slide, Zoom } from "@mui/material";
 
-interface TransitionsProps {
+type TransitionsProps = {
   children: ReactNode;
   type?: "grow" | "fade" | "collapse" | "slide" | "zoom";
   position?:

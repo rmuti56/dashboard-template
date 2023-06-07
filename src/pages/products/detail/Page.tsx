@@ -1,25 +1,42 @@
-import { getProductDetail } from "@/apis/products.api";
+import { getProductDetail, getProductOptions } from "@/apis/products.api";
 import PageContainer from "@/components/PageContainer";
 import PageLoading from "@/components/PageLoading";
-import { Typography } from "@mui/material";
+import { MenuItem, TextField, Typography } from "@mui/material";
 import { useQuery } from "@tanstack/react-query";
 import { useParams } from "react-router-dom";
 
 const ProductDetailPage = () => {
   const { productId } = useParams();
-  const { isLoading } = useQuery({
+  const { isLoading, data: productDetail } = useQuery({
     queryKey: ["productDetail", productId as string],
     queryFn: getProductDetail,
     useErrorBoundary: true,
   });
+  const { isLoading: isProductOptionsLoading, data: productOptions } = useQuery(
+    {
+      queryKey: ["productOptions", {}],
+      queryFn: getProductOptions,
+      useErrorBoundary: true,
+      enabled: !!productDetail,
+    }
+  );
 
-  if (isLoading) {
+  if (isLoading || isProductOptionsLoading) {
     return <PageLoading />;
   }
 
   return (
     <PageContainer>
-      <Typography variant="h5">รายละเอียดสินค้า {productId}</Typography>
+      <Typography variant="h5">รายละเอียด {productDetail?.name}</Typography>
+      <TextField select label="Options" sx={{ minWidth: 300, mt: 2 }}>
+        {productOptions?.map((productOption) => {
+          return (
+            <MenuItem key={productOption.value} value={productOption.value}>
+              {productOption.label}
+            </MenuItem>
+          );
+        })}
+      </TextField>
     </PageContainer>
   );
 };

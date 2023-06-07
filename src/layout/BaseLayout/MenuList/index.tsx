@@ -14,7 +14,7 @@ import {
   productDetailPageUrl,
 } from "@/pages/products/detail";
 
-export interface MenuProps {
+export type MenuProps = {
   id: string;
   type?: "collapse" | "item" | "group" | "hidden";
   icon?: ElementType;
@@ -28,11 +28,11 @@ export interface MenuProps {
   children?: MenuProps[];
   breadcrumbs?: boolean;
   roles?: string[];
-}
+};
 
-export interface MenuItemProps {
+export type MenuItemProps = {
   items: MenuProps[];
-}
+};
 
 // eslint-disable-next-line react-refresh/only-export-components
 export const menuItem: MenuItemProps = {

@@ -18,8 +18,6 @@ const useConfirm = () => {
           color: "success",
         },
         cancelText: "",
-        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-        // @ts-ignore: Unreachable code error
         message: "ดำเนินการสำเร็จ",
         ...payload,
       })
@@ -33,8 +31,6 @@ const useConfirm = () => {
           color: "error",
         },
         cancelText: "",
-        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-        // @ts-ignore: Unreachable code error
         message: "ดำเนินการไม่สำเร็จกรุณาลองใหม่อีกครั้ง",
         ...payload,
       })
