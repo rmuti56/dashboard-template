@@ -1,6 +1,11 @@
 import api from "@/libs/api";
 import { CriteriaRequest, DynamicFilter } from "@/types/criteria-request.type";
-import { Product, ProductFormData, ProductOption } from "@/types/product.type";
+import {
+  Product,
+  ProductFormData,
+  ProductOption,
+  UpdateProductFormData,
+} from "@/types/product.type";
 import { QueryFunctionContext } from "@tanstack/react-query";
 
 type ProductsQueryKey = [string, CriteriaRequest | DynamicFilter];
@@ -44,6 +49,15 @@ export const getProductOptions = async ({
 
 export const createProduct = async (productFormData: ProductFormData) => {
   const { data } = await api.post("/products", productFormData);
+
+  return data;
+};
+
+export const updateProduct = async (
+  updateProductFormData: UpdateProductFormData
+) => {
+  const { id, ...updateProductPayload } = updateProductFormData;
+  const { data } = await api.put(`/products/${id}`, updateProductPayload);
 
   return data;
 };

@@ -1,13 +1,32 @@
-import { getProductDetail, getProductOptions } from "@/apis/product.api";
+import {
+  getProductDetail,
+  getProductOptions,
+  updateProduct,
+} from "@/apis/product.api";
 import PageContainer from "@/components/PageContainer";
 import PageLoading from "@/components/PageLoading";
-import { MenuItem, TextField, Typography } from "@mui/material";
-import { useQuery } from "@tanstack/react-query";
+import ProductForm from "@/components/ProductForm";
+import useConfirm from "@/hooks/useConfirm";
+import { ProductFormData } from "@/types/product.type";
+import { Edit, Visibility } from "@mui/icons-material";
+import {
+  Box,
+  IconButton,
+  MenuItem,
+  TextField,
+  Typography,
+} from "@mui/material";
+import { useMutation, useQuery } from "@tanstack/react-query";
+import { useState } from "react";
 import { useParams } from "react-router-dom";
 
 const ProductDetailPage = () => {
   const { productId } = useParams();
-  const { isLoading, data: productDetail } = useQuery({
+  const {
+    isLoading,
+    data: productDetail,
+    refetch,
+  } = useQuery({
     queryKey: ["productDetail", productId as string],
     queryFn: getProductDetail,
     useErrorBoundary: true,
@@ -21,6 +40,34 @@ const ProductDetailPage = () => {
       enabled: !!productDetail,
     }
   );
+  const { confirmSuccess, confirmError } = useConfirm();
+  const { isLoading: isUpdateProductLoading, mutate } = useMutation({
+    mutationKey: ["updateProduct"],
+    mutationFn: updateProduct,
+    onSuccess: () => {
+      refetch();
+      confirmSuccess({
+        message: "Update product successfully",
+      });
+    },
+    onError: () => {
+      confirmError({
+        message: "Update product failure",
+      });
+    },
+  });
+  const [isEditable, setEditable] = useState(false);
+
+  const handleToggleEditable = () => {
+    setEditable(!isEditable);
+  };
+
+  const handleUpdate = (productFormData: ProductFormData) => {
+    mutate({
+      id: productId as string,
+      ...productFormData,
+    });
+  };
 
   if (isLoading || isProductOptionsLoading) {
     return <PageLoading />;
@@ -28,8 +75,18 @@ const ProductDetailPage = () => {
 
   return (
     <PageContainer>
-      <Typography variant="h5">รายละเอียด {productDetail?.name}</Typography>
-      <TextField select label="Options" sx={{ minWidth: 300, mt: 2 }} defaultValue="">
+      <Box display="flex" justifyContent="space-between">
+        <Typography variant="h5">รายละเอียด {productDetail?.name}</Typography>
+        <IconButton onClick={handleToggleEditable}>
+          {isEditable ? <Visibility /> : <Edit />}
+        </IconButton>
+      </Box>
+      <TextField
+        select
+        label="Options"
+        sx={{ minWidth: 300, mt: 2 }}
+        defaultValue=""
+      >
         {productOptions?.map((productOption) => {
           return (
             <MenuItem key={productOption.value} value={productOption.value}>
@@ -38,6 +95,21 @@ const ProductDetailPage = () => {
           );
         })}
       </TextField>
+      <Box
+        sx={{
+          maxWidth: 400,
+          display: "flex",
+          mx: "auto",
+        }}
+      >
+        <ProductForm
+          initialValues={productDetail}
+          isLoading={isUpdateProductLoading}
+          mode="update"
+          isEditable={isEditable}
+          onSubmit={handleUpdate}
+        />
+      </Box>
     </PageContainer>
   );
 };

@@ -45,7 +45,11 @@ const CreateProductPage = () => {
           mx: "auto",
         }}
       >
-        <ProductForm onSubmit={handleSubmit} isLoading={isLoading} />
+        <ProductForm
+          onSubmit={handleSubmit}
+          isLoading={isLoading}
+          mode="create"
+        />
       </Box>
     </PageContainer>
   );

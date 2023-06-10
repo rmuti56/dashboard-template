@@ -3,6 +3,8 @@ import { Box, Button, CircularProgress, TextField } from "@mui/material";
 import { useForm } from "react-hook-form";
 
 type ProductFormProps = {
+  mode: "create" | "update";
+  isEditable?: boolean;
   onSubmit: (productFormData: ProductFormData) => void;
   isLoading?: boolean;
   initialValues?: ProductFormData;
@@ -10,6 +12,8 @@ type ProductFormProps = {
 
 const ProductForm = ({
   onSubmit,
+  mode,
+  isEditable = true,
   isLoading,
   initialValues,
 }: ProductFormProps) => {
@@ -20,6 +24,8 @@ const ProductForm = ({
   } = useForm<ProductFormData>({
     defaultValues: initialValues,
   });
+
+  const submitText = mode === "create" ? "Create" : "Update";
 
   return (
     <Box
@@ -34,6 +40,7 @@ const ProductForm = ({
         fullWidth
         id="name"
         label="Name"
+        disabled={!isEditable}
         {...register("name", {
           required: "this field is required",
         })}
@@ -48,6 +55,7 @@ const ProductForm = ({
         fullWidth
         label="Description"
         id="description"
+        disabled={!isEditable}
         {...register("description", {
           required: "this field is required",
         })}
@@ -59,7 +67,11 @@ const ProductForm = ({
         required
         label="Price"
         type="number"
+        inputProps={{
+          min: 0,
+        }}
         id="price"
+        disabled={!isEditable}
         {...register("price", {
           required: "this field is required",
         })}
@@ -71,9 +83,9 @@ const ProductForm = ({
         fullWidth
         variant="contained"
         sx={{ mt: 3, mb: 2 }}
-        disabled={isLoading}
+        disabled={isLoading || !isEditable}
       >
-        {isLoading ? <CircularProgress size={20} /> : "Create"}
+        {isLoading ? <CircularProgress size={20} /> : submitText}
       </Button>
     </Box>
   );

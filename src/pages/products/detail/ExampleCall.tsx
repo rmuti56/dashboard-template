@@ -20,7 +20,7 @@ const ExampleCall = () => {
 
   return (
     <PageContainer sx={{ mt: 2 }}>
-      <Typography>Example Call Product Detail #{productDetail?.id}</Typography>
+      <Typography>Example Call Product Detail {productDetail?.name}</Typography>
     </PageContainer>
   );
 };
