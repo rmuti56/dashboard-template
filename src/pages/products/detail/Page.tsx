@@ -29,7 +29,7 @@ const ProductDetailPage = () => {
   return (
     <PageContainer>
       <Typography variant="h5">รายละเอียด {productDetail?.name}</Typography>
-      <TextField select label="Options" sx={{ minWidth: 300, mt: 2 }}>
+      <TextField select label="Options" sx={{ minWidth: 300, mt: 2 }} defaultValue="">
         {productOptions?.map((productOption) => {
           return (
             <MenuItem key={productOption.value} value={productOption.value}>

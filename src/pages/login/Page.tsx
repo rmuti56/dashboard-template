@@ -1,6 +1,6 @@
 import { login } from "@/apis/login.api";
 import useConfirm from "@/hooks/useConfirm";
-import { LoginForm } from "@/types/login.type";
+import { LoginFormData } from "@/types/login.type";
 import { LockOutlined } from "@mui/icons-material";
 import {
   Avatar,
@@ -21,7 +21,7 @@ const LoginPage = () => {
     register,
     formState: { errors },
     handleSubmit,
-  } = useForm<LoginForm>();
+  } = useForm<LoginFormData>();
   const { confirmError } = useConfirm();
   const navigate = useNavigate();
   const { isLoading, mutate } = useMutation({
@@ -38,8 +38,8 @@ const LoginPage = () => {
     },
   });
 
-  const onSubmit = (loginForm: LoginForm) => {
-    mutate(loginForm);
+  const onSubmit = (loginFormData: LoginFormData) => {
+    mutate(loginFormData);
   };
 
   return (
