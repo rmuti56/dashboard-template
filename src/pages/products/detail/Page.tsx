@@ -16,17 +16,14 @@ import {
   TextField,
   Typography,
 } from "@mui/material";
-import { useMutation, useQuery } from "@tanstack/react-query";
+import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { useState } from "react";
 import { useParams } from "react-router-dom";
 
 const ProductDetailPage = () => {
   const { productId } = useParams();
-  const {
-    isLoading,
-    data: productDetail,
-    refetch,
-  } = useQuery({
+  const queryClient = useQueryClient();
+  const { isLoading, data: productDetail } = useQuery({
     queryKey: ["productDetail", productId as string],
     queryFn: getProductDetail,
     useErrorBoundary: true,
@@ -44,8 +41,8 @@ const ProductDetailPage = () => {
   const { isLoading: isUpdateProductLoading, mutate } = useMutation({
     mutationKey: ["updateProduct"],
     mutationFn: updateProduct,
-    onSuccess: () => {
-      refetch();
+    onSuccess: (data) => {
+      queryClient.setQueryData(["productDetail", productId], data);
       confirmSuccess({
         message: "Update product successfully",
       });
@@ -76,7 +73,9 @@ const ProductDetailPage = () => {
   return (
     <PageContainer>
       <Box display="flex" justifyContent="space-between">
-        <Typography variant="h5">รายละเอียด {productDetail?.name}</Typography>
+        <Typography variant="h5">
+          Product Detail ({productDetail?.name})
+        </Typography>
         <IconButton onClick={handleToggleEditable}>
           {isEditable ? <Visibility /> : <Edit />}
         </IconButton>

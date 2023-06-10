@@ -1,7 +1,7 @@
-import { RootState } from "@/store";
+import store, { RootState } from "@/store";
 import {
   ConfirmationState,
-  closeConfirmation,
+  closeConfirmationDelay,
 } from "@/store/slices/confirmation.slice";
 import {
   Button,
@@ -10,7 +10,7 @@ import {
   DialogContent,
   DialogTitle,
 } from "@mui/material";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 
 const ConfirmationDialog = () => {
   const {
@@ -23,17 +23,16 @@ const ConfirmationDialog = () => {
     confirmText,
     title,
   } = useSelector<RootState, ConfirmationState>((state) => state.confirmation);
-  const dispatch = useDispatch();
 
   const handleConfirm = () => {
     if (onConfirm) {
       onConfirm();
     }
-    dispatch(closeConfirmation());
+    store.dispatch(closeConfirmationDelay());
   };
 
   const handleClose = () => {
-    dispatch(closeConfirmation());
+    store.dispatch(closeConfirmationDelay());
   };
 
   return (

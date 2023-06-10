@@ -1,8 +1,9 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { ButtonProps } from "@mui/material";
 import { ReactNode } from "react";
 import { firstIfDefined } from "@/utils/assign.util";
+import { wait } from "@/utils/async.util";
 
 export type ConfirmationState = {
   isOpen: boolean;
@@ -61,12 +62,23 @@ const confirmationSlice = createSlice({
     },
     closeConfirmation: (state) => {
       state.isOpen = false;
-      setTimeout(() => {
-        Object.assign(state, initialState);
-      }, 300);
+    },
+    resetConfirmationState: (state) => {
+      Object.assign(state, initialState);
     },
   },
 });
+
+export const closeConfirmationDelay = createAsyncThunk(
+  "confirmation/closeConfirmationDelay",
+  async (_, { dispatch }) => {
+    dispatch(confirmationSlice.actions.closeConfirmation());
+
+    await wait(300);
+
+    dispatch(confirmationSlice.actions.resetConfirmationState());
+  }
+);
 
 export const { openConfirmation, closeConfirmation } =
   confirmationSlice.actions;
