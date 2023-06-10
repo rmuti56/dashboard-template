@@ -49,6 +49,7 @@ const ProductForm = ({
       />
       <TextField
         multiline
+        rows={2}
         minRows={2}
         margin="normal"
         required

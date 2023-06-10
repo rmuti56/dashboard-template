@@ -57,7 +57,7 @@ export const updateProduct = async (
   updateProductFormData: UpdateProductFormData
 ) => {
   const { id, ...updateProductPayload } = updateProductFormData;
-  const { data } = await api.put(`/products/${id}`, updateProductPayload);
+  const { data } = await api.put<Product>(`/products/${id}`, updateProductPayload);
 
   return data;
 };
