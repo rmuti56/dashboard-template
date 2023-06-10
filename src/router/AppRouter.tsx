@@ -11,6 +11,7 @@ import CreateProductPage, {
   createProductPagePath,
 } from "@/pages/products/create";
 import { productDetailPagePath } from "@/pages/products/detail";
+import ExampleCall from "@/pages/products/detail/ExampleCall";
 import ProductDetailPage from "@/pages/products/detail/Page";
 import { Navigate, createBrowserRouter } from "react-router-dom";
 
@@ -51,6 +52,7 @@ const appRouter = createBrowserRouter([
             element: (
               <PageErrorBoundary backUrl={productsPageUrl}>
                 <ProductDetailPage />
+                <ExampleCall />
               </PageErrorBoundary>
             ),
           },

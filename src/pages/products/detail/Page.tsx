@@ -17,6 +17,7 @@ const ProductDetailPage = () => {
       queryKey: ["productOptions", {}],
       queryFn: getProductOptions,
       useErrorBoundary: true,
+      refetchOnWindowFocus: false,
       enabled: !!productDetail,
     }
   );
