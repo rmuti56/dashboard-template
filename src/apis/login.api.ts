@@ -1,8 +1,8 @@
 import api from "@/libs/api";
-import { LoginForm } from "@/types/login.type";
+import { LoginFormData } from "@/types/login.type";
 
-export const login = async (loginForm: LoginForm) => {
-  const { data } = await api.post(`/login`, loginForm);
+export const login = async (loginFormData: LoginFormData) => {
+  const { data } = await api.post(`/login`, loginFormData);
 
   return data;
 };

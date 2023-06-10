@@ -10,9 +10,9 @@ const LinkBehavior = forwardRef<
   HTMLAnchorElement,
   Omit<RouterLinkProps, "to"> & { href: RouterLinkProps["to"] }
 >((props, ref) => {
-  const { href, ...other } = props;
+  const { href, ...restPros } = props;
   // Map href (Material UI) -> to (react-router)
-  return <RouterLink ref={ref} to={href} {...other} />;
+  return <RouterLink ref={ref} to={href} {...restPros} />;
 });
 
 const appTheme = createTheme({
