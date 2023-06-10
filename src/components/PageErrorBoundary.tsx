@@ -54,12 +54,12 @@ const PageErrorBoundary = ({
                 <Box display="flex" gap={1} alignItems="center">
                   <Error color="error" />
                   <Typography variant="h5" color="error">
-                    พบข้อผิดพลาด
+                    Something went wrong
                   </Typography>
                 </Box>
                 <Box display="flex" gap={1} alignItems="center">
                   <Button href={backUrl}>
-                    <ArrowBackIos /> ไปยังหน้าหลัก
+                    <ArrowBackIos /> Go to main page
                   </Button>
                   <Divider
                     variant="fullWidth"
@@ -70,7 +70,7 @@ const PageErrorBoundary = ({
                     variant="contained"
                     onClick={() => resetErrorBoundary()}
                   >
-                    <Replay /> ลองอีกครั้ง
+                    <Replay /> Try again
                   </Button>
                 </Box>
               </Box>

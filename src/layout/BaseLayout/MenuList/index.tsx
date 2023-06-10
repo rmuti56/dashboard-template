@@ -44,7 +44,7 @@ export const menuItem: MenuItemProps = {
       children: [
         {
           id: homePagePath,
-          title: "หน้าหลัก",
+          title: "Dashboard",
           type: "item",
           url: homePageUrl,
           icon: Home,
@@ -58,14 +58,14 @@ export const menuItem: MenuItemProps = {
       children: [
         {
           id: "productManagement",
-          title: "สินค้า",
+          title: "Product",
           type: "collapse",
           icon: Category,
           url: productsPageUrl,
           children: [
             {
               id: productsPagePath,
-              title: "รายการสินค้า",
+              title: "Product List",
               type: "item",
               url: productsPageUrl,
               breadcrumbs: true,
@@ -73,7 +73,7 @@ export const menuItem: MenuItemProps = {
                 // dynamic path must hide on menu
                 {
                   id: productDetailPagePath,
-                  title: "รายละเอียดสินค้า",
+                  title: "Product Detail",
                   type: "hidden",
                   url: productDetailPageUrl(productDetailPagePath),
                   breadcrumbs: true,
@@ -82,7 +82,7 @@ export const menuItem: MenuItemProps = {
             },
             {
               id: createProductPagePath,
-              title: "สร้างสินค้าใหม่",
+              title: "Create new Product",
               type: "item",
               url: createProductPageUrl,
               breadcrumbs: true,

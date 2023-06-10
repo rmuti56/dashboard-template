@@ -19,13 +19,13 @@ export type OpenConfirmPayload = Partial<ConfirmationState>;
 
 const initialState: ConfirmationState = {
   isOpen: false,
-  message: "ยืนยันการดำเนินการ",
+  message: "Confirm the operation",
   onConfirm: undefined,
-  cancelText: "ยกเลิก",
-  confirmText: "ยืนยัน",
+  cancelText: "Cancel",
+  confirmText: "Confirm",
   cancelButtonProps: {},
   confirmButtonProps: {},
-  title: "ยืนยัน",
+  title: "Confirm",
 };
 
 const confirmationSlice = createSlice({

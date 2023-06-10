@@ -32,8 +32,8 @@ const LoginPage = () => {
     },
     onError: () => {
       confirmError({
-        title: "ข้อสู่ระบบไม่สำเร็จ",
-        message: "ชื่อผู้ใช้หรือรหัสผ่านไม่ถูกต้องกรุณาลองอีกครั้ง",
+        title: "Login failure",
+        message: "User name or password incorrect, please try again",
       });
     },
   });
@@ -52,18 +52,18 @@ const LoginPage = () => {
       <Container>
         <Box
           sx={{
-            height: '100vh',
+            height: "100vh",
             display: "flex",
             flexDirection: "column",
             alignItems: "center",
-            justifyContent: 'center'
+            justifyContent: "center",
           }}
         >
           <Avatar sx={{ m: 1, bgcolor: "secondary.main" }}>
             <LockOutlined />
           </Avatar>
           <Typography component="h1" variant="h5">
-            เข้าสู่ระบบ
+            Login
           </Typography>
           <Box
             component="form"
@@ -76,11 +76,11 @@ const LoginPage = () => {
               required
               fullWidth
               id="username"
-              label="ชื่อผู้ใช้"
+              label="Username"
               autoComplete="username"
               autoFocus
               {...register("username", {
-                required: "กรุณากรอกข้อมูล",
+                required: "this field is require",
               })}
               error={!!errors.username}
               helperText={errors.username?.message}
@@ -89,12 +89,12 @@ const LoginPage = () => {
               margin="normal"
               required
               fullWidth
-              label="รหัสผ่าน"
+              label="Password"
               type="password"
               id="password"
               autoComplete="current-password"
               {...register("password", {
-                required: "กรุณากรอกข้อมูล",
+                required: "this field is require",
               })}
               error={!!errors.password}
               helperText={errors.password?.message}
@@ -106,7 +106,7 @@ const LoginPage = () => {
               sx={{ mt: 3, mb: 2 }}
               disabled={isLoading}
             >
-              {isLoading ? <CircularProgress size={20} /> : "เข้าสู่ระบบ"}
+              {isLoading ? <CircularProgress size={20} /> : "Login"}
             </Button>
           </Box>
         </Box>

@@ -18,7 +18,7 @@ const useConfirm = () => {
           color: "success",
         },
         cancelText: "",
-        message: "ดำเนินการสำเร็จ",
+        message: "Successfully executed",
         ...payload,
       })
     );
@@ -31,7 +31,7 @@ const useConfirm = () => {
           color: "error",
         },
         cancelText: "",
-        message: "ดำเนินการไม่สำเร็จกรุณาลองใหม่อีกครั้ง",
+        message: "The operation failed, please try again.",
         ...payload,
       })
     );

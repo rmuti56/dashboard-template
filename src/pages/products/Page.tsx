@@ -1,9 +1,9 @@
 import { deleteProduct, getProducts } from "@/apis/product.api";
 import MUIDataTableExtended from "@/components/MUIDataTableExtended";
-import { TABLE_LABEL, TABLE_OPTIONS } from "@/constants/config.constant";
+import { TABLE_OPTIONS } from "@/constants/config.constant";
 import useDataTable from "@/hooks/useDataTable";
 import { getKeyFromColumns } from "@/utils/filter.util";
-import { Delete, Visibility } from "@mui/icons-material";
+import { DeleteOutline, Visibility } from "@mui/icons-material";
 import {
   Box,
   Button,
@@ -63,7 +63,7 @@ const ProductsPage = () => {
   const handleShowConfirmDelete = (productId: string) => {
     confirm({
       onConfirm: () => handleConfirmDeleteProduct(productId),
-      message: `ยืนยันการลบสินค้าหมายเลข #${productId}`,
+      message: `Confirm to remove product id #${productId}`,
       confirmButtonProps: {
         color: "error",
       },
@@ -77,7 +77,7 @@ const ProductsPage = () => {
   const columns: MUIDataTableColumn[] = [
     {
       name: "id",
-      label: "หมายเลข",
+      label: "ID",
       options: {
         filter: false,
         sort: false,
@@ -85,7 +85,7 @@ const ProductsPage = () => {
     },
     {
       name: "name",
-      label: "ชื่อ",
+      label: "Name",
       options: {
         filter: true,
         sort: true,
@@ -102,7 +102,7 @@ const ProductsPage = () => {
     },
     {
       name: "description",
-      label: "คำอธิบาย",
+      label: "Description",
       options: {
         setCellProps: () => ({
           style: { maxWidth: "500px" },
@@ -113,7 +113,7 @@ const ProductsPage = () => {
     },
     {
       name: "price",
-      label: "ราคา",
+      label: "Price",
       options: {
         filter: true,
         sort: false,
@@ -125,7 +125,7 @@ const ProductsPage = () => {
     },
     {
       name: "createdAt",
-      label: "สร้างเมื่อ",
+      label: "Created At",
       options: {
         filter: false,
         sort: true,
@@ -158,7 +158,7 @@ const ProductsPage = () => {
                 deleteMutation.isLoading ? (
                   <CircularProgress size={16} color="error" />
                 ) : (
-                  <Delete color="error" />
+                  <DeleteOutline color="error" />
                 )}
               </IconButton>
             </Box>
@@ -181,10 +181,8 @@ const ProductsPage = () => {
         // TODO: use response from API
         count: 50,
         textLabels: {
-          ...TABLE_LABEL,
           body: {
-            ...TABLE_LABEL.body,
-            noMatch: isLoading ? <LinearProgress /> : "ไม่พบข้อมูล",
+            noMatch: isLoading ? <LinearProgress /> : "Can not found the data",
           },
         },
         confirmFilters: true,
@@ -198,7 +196,7 @@ const ProductsPage = () => {
                   handleFilter(filterList, keyFromColumns);
                 }}
               >
-                ปรับใช้
+                Apply
               </Button>
             </Box>
           );
