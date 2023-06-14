@@ -48,9 +48,8 @@ const ProductForm = ({
         helperText={errors.name?.message}
       />
       <TextField
-        multiline
+        multiline={true}
         rows={2}
-        minRows={2}
         margin="normal"
         required
         fullWidth

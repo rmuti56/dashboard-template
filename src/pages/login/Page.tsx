@@ -15,6 +15,7 @@ import { useMutation } from "@tanstack/react-query";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import { homePageUrl } from "../home";
+import { MutationKey } from "@/enums/mutation-key.enum";
 
 const LoginPage = () => {
   const {
@@ -25,7 +26,7 @@ const LoginPage = () => {
   const { confirmError } = useConfirm();
   const navigate = useNavigate();
   const { isLoading, mutate } = useMutation({
-    mutationKey: ["login"],
+    mutationKey: [MutationKey.LOGIN],
     mutationFn: login,
     onSuccess: () => {
       navigate(homePageUrl);

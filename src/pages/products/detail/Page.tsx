@@ -6,6 +6,8 @@ import {
 import PageContainer from "@/components/PageContainer";
 import PageLoading from "@/components/PageLoading";
 import ProductForm from "@/components/ProductForm";
+import { MutationKey } from "@/enums/mutation-key.enum";
+import { QueryKey } from "@/enums/query-key.enum";
 import useConfirm from "@/hooks/useConfirm";
 import { ProductFormData } from "@/types/product.type";
 import { Edit, Visibility } from "@mui/icons-material";
@@ -24,7 +26,7 @@ const ProductDetailPage = () => {
   const { productId } = useParams();
   const queryClient = useQueryClient();
   const { isLoading, data: productDetail } = useQuery({
-    queryKey: ["productDetail", productId as string],
+    queryKey: [QueryKey.PRODUCT_DETAIL, productId as string],
     queryFn: getProductDetail,
     useErrorBoundary: true,
   });
@@ -39,10 +41,10 @@ const ProductDetailPage = () => {
   );
   const { confirmSuccess, confirmError } = useConfirm();
   const { isLoading: isUpdateProductLoading, mutate } = useMutation({
-    mutationKey: ["updateProduct"],
+    mutationKey: [MutationKey.UPDATE_PRODUCT],
     mutationFn: updateProduct,
     onSuccess: (data) => {
-      queryClient.setQueryData(["productDetail", productId], data);
+      queryClient.setQueryData([QueryKey.PRODUCT_DETAIL, productId], data);
       confirmSuccess({
         message: "Update product successfully",
       });
