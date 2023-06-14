@@ -6,10 +6,10 @@ import {
 import PageContainer from "@/components/PageContainer";
 import PageLoading from "@/components/PageLoading";
 import ProductForm from "@/components/ProductForm";
+import { ProductDto } from "@/dtos/product.dto";
 import { MutationKey } from "@/enums/mutation-key.enum";
 import { QueryKey } from "@/enums/query-key.enum";
 import useConfirm from "@/hooks/useConfirm";
-import { ProductFormData } from "@/types/product.type";
 import { Edit, Visibility } from "@mui/icons-material";
 import {
   Box,
@@ -61,10 +61,10 @@ const ProductDetailPage = () => {
     setEditable(!isEditable);
   };
 
-  const handleUpdate = (productFormData: ProductFormData) => {
+  const handleUpdate = (productDto: ProductDto) => {
     mutate({
       id: productId as string,
-      ...productFormData,
+      ...productDto,
     });
   };
 
