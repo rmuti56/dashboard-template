@@ -1,6 +1,5 @@
 import { login } from "@/apis/login.api";
 import useConfirm from "@/hooks/useConfirm";
-import { LoginFormData } from "@/types/login.type";
 import { LockOutlined } from "@mui/icons-material";
 import {
   Avatar,
@@ -16,13 +15,19 @@ import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import { homePageUrl } from "../home";
 import { MutationKey } from "@/enums/mutation-key.enum";
+import { classValidatorResolver } from "@hookform/resolvers/class-validator";
+import { LoginDto } from "@/dtos/login.dto";
+
+const resolver = classValidatorResolver(LoginDto);
 
 const LoginPage = () => {
   const {
     register,
     formState: { errors },
     handleSubmit,
-  } = useForm<LoginFormData>();
+  } = useForm<LoginDto>({
+    resolver,
+  });
   const { confirmError } = useConfirm();
   const navigate = useNavigate();
   const { isLoading, mutate } = useMutation({
@@ -39,7 +44,7 @@ const LoginPage = () => {
     },
   });
 
-  const onSubmit = (loginFormData: LoginFormData) => {
+  const onSubmit = (loginFormData: LoginDto) => {
     mutate(loginFormData);
   };
 
@@ -80,9 +85,7 @@ const LoginPage = () => {
               label="ชื่อผู้ใช้"
               autoComplete="username"
               autoFocus
-              {...register("username", {
-                required: "กรุณากรอกข้อมูล",
-              })}
+              {...register("username")}
               error={!!errors.username}
               helperText={errors.username?.message}
             />
@@ -94,9 +97,7 @@ const LoginPage = () => {
               type="password"
               id="password"
               autoComplete="current-password"
-              {...register("password", {
-                required: "กรุณากรอกข้อมูล",
-              })}
+              {...register("password")}
               error={!!errors.password}
               helperText={errors.password?.message}
             />

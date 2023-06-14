@@ -12,7 +12,3 @@ export type ProductOption = {
   value: string;
   label: string;
 };
-
-export type ProductFormData = Omit<Product, "id" | "createdAt">;
-
-export type UpdateProductFormData = Omit<Product, "createdAt">;

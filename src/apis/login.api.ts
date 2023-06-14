@@ -1,8 +1,8 @@
+import { LoginDto } from "@/dtos/login.dto";
 import api from "@/libs/api";
-import { LoginFormData } from "@/types/login.type";
 
-export const login = async (loginFormData: LoginFormData) => {
-  const { data } = await api.post(`/login`, loginFormData);
+export const login = async (loginDto: LoginDto) => {
+  const { data } = await api.post(`/login`, loginDto);
 
   return data;
 };

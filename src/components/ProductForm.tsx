@@ -1,14 +1,17 @@
-import { ProductFormData } from "@/types/product.type";
+import { ProductDto } from "@/dtos/product.dto";
+import { classValidatorResolver } from "@hookform/resolvers/class-validator";
 import { Box, Button, CircularProgress, TextField } from "@mui/material";
 import { useForm } from "react-hook-form";
 
 type ProductFormProps = {
   mode: "create" | "update";
   isEditable?: boolean;
-  onSubmit: (productFormData: ProductFormData) => void;
+  onSubmit: (productFormData: ProductDto) => void;
   isLoading?: boolean;
-  initialValues?: ProductFormData;
+  initialValues?: ProductDto;
 };
+
+const resolver = classValidatorResolver(ProductDto);
 
 const ProductForm = ({
   onSubmit,
@@ -21,8 +24,9 @@ const ProductForm = ({
     register,
     formState: { errors },
     handleSubmit,
-  } = useForm<ProductFormData>({
+  } = useForm<ProductDto>({
     defaultValues: initialValues,
+    resolver,
   });
 
   const submitText = mode === "create" ? "Create" : "Update";
@@ -41,9 +45,7 @@ const ProductForm = ({
         id="name"
         label="Name"
         disabled={!isEditable}
-        {...register("name", {
-          required: "this field is required",
-        })}
+        {...register("name")}
         error={!!errors.name}
         helperText={errors.name?.message}
       />
@@ -56,9 +58,7 @@ const ProductForm = ({
         label="Description"
         id="description"
         disabled={!isEditable}
-        {...register("description", {
-          required: "this field is required",
-        })}
+        {...register("description")}
         error={!!errors.description}
         helperText={errors.description?.message}
       />
@@ -72,9 +72,7 @@ const ProductForm = ({
         }}
         id="price"
         disabled={!isEditable}
-        {...register("price", {
-          required: "this field is required",
-        })}
+        {...register("price")}
         error={!!errors.price}
         helperText={errors.price?.message}
       />
