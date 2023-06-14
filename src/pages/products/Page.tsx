@@ -17,6 +17,8 @@ import { MUIDataTableColumn } from "mui-datatables";
 import { productDetailPageUrl } from "./detail";
 import { formatDateTime } from "@/utils/format-date.util";
 import useConfirm from "@/hooks/useConfirm";
+import { QueryKey } from "@/enums/query-key.enum";
+import { MutationKey } from "@/enums/mutation-key.enum";
 
 const ProductsPage = () => {
   const {
@@ -34,7 +36,7 @@ const ProductsPage = () => {
   } = useDataTable();
   const { isLoading, data, refetch } = useQuery({
     queryKey: [
-      "products",
+      QueryKey.PRODUCTS,
       {
         page: currentPage + 1,
         limit: pageSize,
@@ -45,11 +47,18 @@ const ProductsPage = () => {
       },
     ],
     queryFn: getProducts,
+    select: (products) =>
+      products.map((product) => {
+        return {
+          ...product,
+          name: `${product.name} 123`,
+        };
+      }),
     useErrorBoundary: true,
   });
   const { confirm, confirmSuccess, confirmError } = useConfirm();
   const deleteMutation = useMutation({
-    mutationKey: ["deleteProduct"],
+    mutationKey: [MutationKey.DELETE_PRODUCT],
     mutationFn: deleteProduct,
     onSuccess: () => {
       refetch();

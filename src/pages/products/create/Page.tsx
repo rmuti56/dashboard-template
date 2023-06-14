@@ -7,13 +7,14 @@ import { Box, Divider, Typography } from "@mui/material";
 import { useMutation } from "@tanstack/react-query";
 import { useNavigate } from "react-router-dom";
 import { productsPageUrl } from "..";
+import { MutationKey } from "@/enums/mutation-key.enum";
 
 const CreateProductPage = () => {
   const { confirmError, confirmSuccess } = useConfirm();
   const navigate = useNavigate();
 
   const { isLoading, mutate } = useMutation({
-    mutationKey: ["createProduct"],
+    mutationKey: [MutationKey.CREATE_PRODUCT],
     mutationFn: createProduct,
     onSuccess: () => {
       confirmSuccess({
