@@ -1,7 +1,13 @@
 import { ProductDto } from "@/dtos/product.dto";
 import { classValidatorResolver } from "@hookform/resolvers/class-validator";
-import { Box, Button, CircularProgress, TextField } from "@mui/material";
-import { useForm } from "react-hook-form";
+import {
+  Box,
+  Button,
+  CircularProgress,
+  Divider,
+  TextField,
+} from "@mui/material";
+import { useFieldArray, useForm } from "react-hook-form";
 
 type ProductFormProps = {
   mode: "create" | "update";
@@ -23,10 +29,15 @@ const ProductForm = ({
   const {
     register,
     formState: { errors },
+    control,
     handleSubmit,
   } = useForm<ProductDto>({
     defaultValues: initialValues,
     resolver,
+  });
+  const { fields, append, remove } = useFieldArray<ProductDto>({
+    control,
+    name: "options",
   });
 
   const submitText = mode === "create" ? "Create" : "Update";
@@ -76,6 +87,50 @@ const ProductForm = ({
         error={!!errors.price}
         helperText={errors.price?.message}
       />
+      <Box>
+        {fields.map((field, index) => (
+          <div key={field.id}>
+            <Divider />
+            <TextField
+              fullWidth
+              required
+              margin="normal"
+              label="Label"
+              placeholder="Label"
+              disabled={!isEditable}
+              {...register(`options.${index}.label`)}
+              error={!!errors.options?.[index]?.label}
+              helperText={errors.options?.[index]?.label?.message}
+            />
+            <TextField
+              fullWidth
+              required
+              margin="normal"
+              label="Value"
+              placeholder="Value"
+              disabled={!isEditable}
+              {...register(`options.${index}.value`)}
+              error={!!errors.options?.[index]?.value}
+              helperText={errors.options?.[index]?.value?.message}
+            />
+            <Button type="button" onClick={() => remove(index)}>
+              Remove
+            </Button>
+          </div>
+        ))}
+        <Button
+          type="button"
+          disabled={!isEditable}
+          onClick={() =>
+            append({
+              label: "",
+              value: "",
+            })
+          }
+        >
+          Add Option
+        </Button>
+      </Box>
       <Button
         type="submit"
         fullWidth
