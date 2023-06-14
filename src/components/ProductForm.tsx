@@ -35,7 +35,7 @@ const ProductForm = ({
     defaultValues: initialValues,
     resolver,
   });
-  const { fields, append, remove } = useFieldArray<ProductDto>({
+  const { fields, append, remove } = useFieldArray({
     control,
     name: "options",
   });
