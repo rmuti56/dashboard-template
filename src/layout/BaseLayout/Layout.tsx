@@ -1,3 +1,6 @@
+import Breadcrumbs from "@/components/Breadcrumbs";
+import { DRAWER_WIDTH } from "@/constants/config.constant";
+import { ChevronRight } from "@mui/icons-material";
 import { AppBar, Box, Toolbar, useMediaQuery } from "@mui/material";
 import {
   StyledComponentProps,
@@ -7,26 +10,20 @@ import {
 } from "@mui/material/styles";
 import { useState } from "react";
 import { Outlet } from "react-router-dom";
-
-// import Breadcrumbs from "ui-component/extended/Breadcrumbs";
 import Header from "./Header";
+import { menuItem } from "./MenuList";
 import Sidebar from "./Sidebar";
 
-// assets
-import { ConfigEnum } from "@/enums/config.enum";
-
-const drawerWidth = ConfigEnum.DRAWER_WIDTH;
-
-interface MainProps extends StyledComponentProps {
+type MainProps = StyledComponentProps & {
   open: boolean;
   theme: Theme;
-}
+};
 
 const Main = styled("main", {
   shouldForwardProp: (prop) => prop !== "open",
 })(({ theme, open }: MainProps) => ({
   ...theme.typography.mainContent,
-  backgroundColor: '#EEF2F6',
+  backgroundColor: theme.palette.background.main,
   borderBottomLeftRadius: 0,
   borderBottomRightRadius: 0,
   transition: theme.transitions.create(
@@ -42,17 +39,17 @@ const Main = styled("main", {
         }
   ),
   [theme.breakpoints.up("md")]: {
-    marginLeft: open ? 0 : -(drawerWidth - 20),
-    width: `calc(100% - ${drawerWidth}px)`,
+    marginLeft: open ? 0 : -(DRAWER_WIDTH - 20),
+    width: `calc(100% - ${DRAWER_WIDTH}px)`,
   },
   [theme.breakpoints.down("md")]: {
     marginLeft: "20px",
-    width: `calc(100% - ${drawerWidth}px)`,
+    width: `calc(100% - ${DRAWER_WIDTH}px)`,
     padding: "16px",
   },
   [theme.breakpoints.down("sm")]: {
     marginLeft: "10px",
-    width: `calc(100% - ${drawerWidth}px)`,
+    width: `calc(100% - ${DRAWER_WIDTH}px)`,
     padding: "16px",
     marginRight: "10px",
   },
@@ -81,7 +78,11 @@ const BaseLayout = () => {
             : "none",
         }}
       >
-        <Toolbar>
+        <Toolbar
+          sx={{
+            py: 2,
+          }}
+        >
           <Header handleLeftDrawerToggle={handleLeftDrawerToggle} />
         </Toolbar>
       </AppBar>
@@ -92,14 +93,13 @@ const BaseLayout = () => {
       />
 
       <Main theme={theme} open={leftDrawerOpened}>
-        {/* breadcrumb */}
-        {/* <Breadcrumbs
+        <Breadcrumbs
           separator={ChevronRight}
-          navigation={navigation}
+          navigation={menuItem}
           icon
           title
           rightAlign
-        /> */}
+        />
         <Outlet />
       </Main>
     </Box>

@@ -1,10 +1,16 @@
-import { ElementType, forwardRef, useEffect } from "react";
+import {
+  ElementType,
+  ForwardRefExoticComponent,
+  forwardRef,
+  useEffect,
+} from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Link, useLocation } from "react-router-dom";
+import { Link, NavLinkProps, useLocation } from "react-router-dom";
 
 import {
   Avatar,
   Chip,
+  LinkBaseProps,
   ListItemButton,
   ListItemIcon,
   ListItemText,
@@ -14,14 +20,14 @@ import {
 import { useTheme } from "@mui/material/styles";
 
 import { RootState } from "@/store";
-import { MenuState, menuOpen, setMenu } from "@/store/slices/menu-slice";
+import { MenuState, menuOpen, setMenu } from "@/store/slices/menu.slice";
 import FiberManualRecordIcon from "@mui/icons-material/FiberManualRecord";
 import { MenuProps } from ".";
 
-interface NavItemProps {
+type NavItemProps = {
   item: MenuProps;
   level: number;
-}
+};
 
 const NavItem = ({ item, level }: NavItemProps) => {
   const theme = useTheme();
@@ -50,10 +56,22 @@ const NavItem = ({ item, level }: NavItemProps) => {
     itemTarget = "_blank";
   }
 
-  let listItemProps: any = {
-    component: forwardRef<any>((props, ref) => (
-      <Link ref={ref} {...props} to={item.url as string} target={itemTarget} />
-    )),
+  let listItemProps: {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    component: string | ForwardRefExoticComponent<any>;
+    href?: string;
+    target?: string;
+  } = {
+    component: forwardRef<HTMLAnchorElement, LinkBaseProps & NavLinkProps>(
+      (props, ref) => (
+        <Link
+          ref={ref}
+          {...props}
+          to={item.url as string}
+          target={itemTarget}
+        />
+      )
+    ),
   };
   if (item?.external) {
     listItemProps = { component: "a", href: item.url, target: itemTarget };

@@ -1,17 +1,18 @@
 import { Menu } from "@mui/icons-material";
 import { Avatar, Box, ButtonBase } from "@mui/material";
 import { useTheme } from "@mui/material/styles";
+import LogoSection from "./LogoSection";
+import ProfileSection from "./ProfileSection";
 
-interface HeaderProps {
+type HeaderProps = {
   handleLeftDrawerToggle?: () => void;
-}
+};
 
 const Header = ({ handleLeftDrawerToggle }: HeaderProps): JSX.Element => {
   const theme = useTheme();
 
   return (
     <>
-      {/* logo & toggler button */}
       <Box
         sx={{
           width: 228,
@@ -25,7 +26,7 @@ const Header = ({ handleLeftDrawerToggle }: HeaderProps): JSX.Element => {
           component="span"
           sx={{ display: { xs: "none", md: "block" }, flexGrow: 1 }}
         >
-          Logo
+          <LogoSection />
         </Box>
         <ButtonBase sx={{ borderRadius: "12px", overflow: "hidden" }}>
           <Avatar
@@ -44,13 +45,13 @@ const Header = ({ handleLeftDrawerToggle }: HeaderProps): JSX.Element => {
             onClick={handleLeftDrawerToggle}
             color="inherit"
           >
-            <Menu  />
+            <Menu />
           </Avatar>
         </ButtonBase>
       </Box>
       <Box sx={{ flexGrow: 1 }} />
       <Box sx={{ flexGrow: 1 }} />
-      Notification
+      <ProfileSection />
     </>
   );
 };

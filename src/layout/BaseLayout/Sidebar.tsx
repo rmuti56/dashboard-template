@@ -1,18 +1,16 @@
-import { Box, Chip, Drawer, Stack, useMediaQuery } from "@mui/material";
+import { DRAWER_WIDTH } from "@/constants/config.constant";
+import { Box, Drawer, useMediaQuery } from "@mui/material";
 import { useTheme } from "@mui/material/styles";
-
 import { BrowserView, MobileView } from "react-device-detect";
 import PerfectScrollbar from "react-perfect-scrollbar";
-
-import { ConfigEnum } from "@/enums/config.enum";
-import MenuCard from "./MenuCard";
+import LogoSection from "./LogoSection";
 import MenuList from "./MenuList";
 
-interface SidebarProps {
+type SidebarProps = {
   drawerOpen: boolean;
   drawerToggle: () => void;
   window?: Window;
-}
+};
 
 const Sidebar = ({ drawerOpen, drawerToggle, window }: SidebarProps) => {
   const theme = useTheme();
@@ -20,8 +18,10 @@ const Sidebar = ({ drawerOpen, drawerToggle, window }: SidebarProps) => {
 
   const drawer = (
     <>
-      <Box sx={{ display: { xs: "block", md: "none", } }}>
-        <Box sx={{ display: "flex", p: 2, mx: "auto" }}>LOGO</Box>
+      <Box sx={{ display: { xs: "block", md: "none" } }}>
+        <Box sx={{ display: "flex", p: 2, mx: "auto" }}>
+          <LogoSection />
+        </Box>
       </Box>
       <BrowserView>
         <PerfectScrollbar
@@ -33,13 +33,11 @@ const Sidebar = ({ drawerOpen, drawerToggle, window }: SidebarProps) => {
           }}
         >
           <MenuList />
-          <MenuCard />
         </PerfectScrollbar>
       </BrowserView>
       <MobileView>
         <Box sx={{ px: 2 }}>
           <MenuList />
-          <MenuCard />
         </Box>
       </MobileView>
     </>
@@ -53,7 +51,7 @@ const Sidebar = ({ drawerOpen, drawerToggle, window }: SidebarProps) => {
       component="nav"
       sx={{
         flexShrink: { md: 0 },
-        width: matchUpMd ? ConfigEnum.DRAWER_WIDTH : "auto",
+        width: matchUpMd ? DRAWER_WIDTH : "auto",
       }}
       aria-label="mailbox folders"
     >
@@ -65,7 +63,7 @@ const Sidebar = ({ drawerOpen, drawerToggle, window }: SidebarProps) => {
         onClose={drawerToggle}
         sx={{
           "& .MuiDrawer-paper": {
-            width: ConfigEnum.DRAWER_WIDTH,
+            width: DRAWER_WIDTH,
             background: theme.palette.background.default,
             color: theme.palette.text.primary,
             borderRight: "none",

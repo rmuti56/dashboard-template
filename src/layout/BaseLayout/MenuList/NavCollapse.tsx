@@ -1,6 +1,5 @@
-import { ElementType, useEffect, useState } from "react";
-import { useLocation, useNavigate } from "react-router-dom";
-
+import { KeyboardArrowDown, KeyboardArrowUp } from "@mui/icons-material";
+import FiberManualRecordIcon from "@mui/icons-material/FiberManualRecord";
 import {
   Collapse,
   List,
@@ -10,21 +9,19 @@ import {
   Typography,
 } from "@mui/material";
 import { useTheme } from "@mui/material/styles";
-
-import NavItem from "./NavItem";
-
-import FiberManualRecordIcon from "@mui/icons-material/FiberManualRecord";
-import { ChevronDown, ChevronUp } from "tabler-icons-react";
+import { ElementType, useEffect, useState } from "react";
+import { useLocation } from "react-router-dom";
 import { MenuProps } from ".";
+import NavItem from "./NavItem";
+import { isUrlMatched } from "@/utils/url.util";
 
-interface NavCollapseProps {
+type NavCollapseProps = {
   menu: MenuProps;
   level: number;
-}
+};
 
 const NavCollapse = ({ menu, level }: NavCollapseProps) => {
   const theme = useTheme();
-  const navigate = useNavigate();
 
   const [open, setOpen] = useState(false);
   const [selected, setSelected] = useState<string | null>(null);
@@ -32,9 +29,6 @@ const NavCollapse = ({ menu, level }: NavCollapseProps) => {
   const handleClick = () => {
     setOpen(!open);
     setSelected(!selected ? menu.id : null);
-    if (menu?.id !== "authentication") {
-      navigate(menu.children?.[0]?.url as string);
-    }
   };
 
   const { pathname } = useLocation();
@@ -45,7 +39,7 @@ const NavCollapse = ({ menu, level }: NavCollapseProps) => {
     if (menu.children) {
       const checkOpenForParent = (child: MenuProps[], id: string) => {
         child.forEach((item) => {
-          if (item.url === pathname) {
+          if (item.url === pathname || isUrlMatched(item.url, pathname)) {
             setOpen(true);
             setSelected(id);
           }
@@ -137,17 +131,9 @@ const NavCollapse = ({ menu, level }: NavCollapseProps) => {
           }
         />
         {open ? (
-          <ChevronUp
-            stroke="1.5"
-            size="1rem"
-            style={{ marginTop: "auto", marginBottom: "auto" }}
-          />
+          <KeyboardArrowUp sx={{ marginTop: "auto", marginBottom: "auto" }} />
         ) : (
-          <ChevronDown
-            stroke="1.5"
-            size="1rem"
-            style={{ marginTop: "auto", marginBottom: "auto" }}
-          />
+          <KeyboardArrowDown sx={{ marginTop: "auto", marginBottom: "auto" }} />
         )}
       </ListItemButton>
       <Collapse in={open} timeout="auto" unmountOnExit>

@@ -1,17 +1,22 @@
-// material-ui
 import { ChipProps, Typography } from "@mui/material";
 
+import { homePagePath, homePageUrl } from "@/pages/home";
+import { productsPagePath, productsPageUrl } from "@/pages/products";
+import {
+  createProductPagePath,
+  createProductPageUrl,
+} from "@/pages/products/create";
+import { Category, Home } from "@mui/icons-material";
 import { ElementType } from "react";
 import NavGroup from "./NavGroup";
-import { Key } from "tabler-icons-react";
-import { homePagePath, homePageUrl } from "@/pages/home";
-import { Dashboard } from "@mui/icons-material";
-import { UrlPrefixEnum } from "@/enums/url-prefix.enum";
-import { loginPagePath, loginPageUrl } from "@/pages/login";
+import {
+  productDetailPagePath,
+  productDetailPageUrl,
+} from "@/pages/products/detail";
 
-export interface MenuProps {
+export type MenuProps = {
   id: string;
-  type?: "collapse" | "item" | "group";
+  type?: "collapse" | "item" | "group" | "hidden";
   icon?: ElementType;
   url?: string;
   target?: boolean;
@@ -21,17 +26,19 @@ export interface MenuProps {
   chip?: ChipProps;
   title: string;
   children?: MenuProps[];
-  breadcrumbs?: any;
-}
+  breadcrumbs?: boolean;
+  roles?: string[];
+};
 
-interface MenuItemProps {
+export type MenuItemProps = {
   items: MenuProps[];
-}
+};
 
-const menuItem: MenuItemProps = {
+// eslint-disable-next-line react-refresh/only-export-components
+export const menuItem: MenuItemProps = {
   items: [
     {
-      id: UrlPrefixEnum.ADMIN,
+      id: "adminDashboard",
       title: "",
       type: "group",
       children: [
@@ -40,34 +47,45 @@ const menuItem: MenuItemProps = {
           title: "Dashboard",
           type: "item",
           url: homePageUrl,
-          icon: Dashboard,
-          breadcrumbs: false,
+          icon: Home,
         },
       ],
     },
     {
-      id: UrlPrefixEnum.ADMIN,
+      id: "adminProduct",
       title: "",
       type: "group",
       children: [
         {
-          id: "authentication",
-          title: "Authentication",
+          id: "productManagement",
+          title: "Product",
           type: "collapse",
-          icon: Key,
+          icon: Category,
+          url: productsPageUrl,
           children: [
             {
-              id: loginPagePath,
-              title: "Login",
+              id: productsPagePath,
+              title: "Product List",
               type: "item",
-              url: loginPageUrl,
+              url: productsPageUrl,
+              breadcrumbs: true,
+              children: [
+                // dynamic path must hide on menu
+                {
+                  id: productDetailPagePath,
+                  title: "Product Detail",
+                  type: "hidden",
+                  url: productDetailPageUrl(productDetailPagePath),
+                  breadcrumbs: true,
+                },
+              ],
             },
             {
-              id: "register3",
-              title: "Register",
+              id: createProductPagePath,
+              title: "Create new Product",
               type: "item",
-              url: "/pages/register/register3",
-              target: true,
+              url: createProductPageUrl,
+              breadcrumbs: true,
             },
           ],
         },
