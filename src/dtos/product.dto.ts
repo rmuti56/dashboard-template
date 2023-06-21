@@ -5,6 +5,7 @@ import {
   IsArray,
   IsNotEmpty,
   MaxLength,
+  MinLength,
   ValidateNested,
 } from "class-validator";
 
@@ -37,6 +38,7 @@ export class ProductOptionDto {
   @IsNotEmpty({
     message: ValidationMessage.REQUIRED,
   })
+  @MinLength(3)
   label: string;
 
   @IsNotEmpty({
