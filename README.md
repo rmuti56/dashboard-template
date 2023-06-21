@@ -1,4 +1,4 @@
-# tgc-web
+# Dashboard Template
 ### Prerequirement
 - Node version 16
 - Run `npm install`
@@ -7,4 +7,4 @@
 
 ### Production
 - Run `npm run build`
-- Run `npm run preview`
+- Run `npm run serve`
