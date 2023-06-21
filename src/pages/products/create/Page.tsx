@@ -2,12 +2,12 @@ import { createProduct } from "@/apis/product.api";
 import PageContainer from "@/components/PageContainer";
 import ProductForm from "@/components/ProductForm";
 import useConfirm from "@/hooks/useConfirm";
-import { ProductFormData } from "@/types/product.type";
 import { Box, Divider, Typography } from "@mui/material";
 import { useMutation } from "@tanstack/react-query";
 import { useNavigate } from "react-router-dom";
 import { productsPageUrl } from "..";
 import { MutationKey } from "@/enums/mutation-key.enum";
+import { ProductDto } from "@/dtos/product.dto";
 
 const CreateProductPage = () => {
   const { confirmError, confirmSuccess } = useConfirm();
@@ -31,8 +31,8 @@ const CreateProductPage = () => {
     },
   });
 
-  const handleSubmit = (productFormData: ProductFormData) => {
-    mutate(productFormData);
+  const handleSubmit = (productDto: ProductDto) => {
+    mutate(productDto);
   };
 
   return (

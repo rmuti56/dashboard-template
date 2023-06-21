@@ -82,6 +82,13 @@ const ProductDetailPage = () => {
           {isEditable ? <Visibility /> : <Edit />}
         </IconButton>
       </Box>
+      <Box
+        sx={{
+          maxWidth: 400,
+          display: "flex",
+          mx: "auto",
+        }}
+      >
       <TextField
         select
         label="Options"
@@ -96,6 +103,7 @@ const ProductDetailPage = () => {
           );
         })}
       </TextField>
+      </Box>
       <Box
         sx={{
           maxWidth: 400,
