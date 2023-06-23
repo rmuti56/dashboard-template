@@ -1,5 +1,5 @@
 import React from "react";
-import { useSelector, useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
 import {
   FormControl,
   Select,
@@ -30,7 +30,7 @@ const LocaleSwitcherSection: React.FC = () => {
   return (
     <div>
       <FormControl>
-        <Select value={locale as any} onChange={handleLocaleChange} size="small">
+        <Select value={locale as unknown as ""} onChange={handleLocaleChange} size="small">
           <MenuItem value={Locale.EN}>{localeNames[Locale.EN]}</MenuItem>
           <MenuItem value={Locale.TH}>{localeNames[Locale.TH]}</MenuItem>
         </Select>
