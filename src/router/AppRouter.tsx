@@ -1,5 +1,5 @@
 import PageErrorBoundary from "@/components/PageErrorBoundary";
-import { UrlPrefixEnum } from "@/enums/url-prefix.enum";
+import { UrlPrefix } from "@/enums/url-prefix.enum";
 import BaseLayout from "@/layout/BaseLayout/Layout";
 import HomePage, { homePagePath, homePageUrl } from "@/pages/home";
 import LoginPage, { loginPagePath } from "@/pages/login";
@@ -21,11 +21,11 @@ const appRouter = createBrowserRouter([
     element: <Navigate to={homePageUrl} replace />,
   },
   {
-    path: `${UrlPrefixEnum.ADMIN}/${loginPagePath}`,
+    path: `${UrlPrefix.ADMIN}/${loginPagePath}`,
     element: <LoginPage />,
   },
   {
-    path: UrlPrefixEnum.ADMIN,
+    path: UrlPrefix.ADMIN,
     element: <BaseLayout />,
     children: [
       {

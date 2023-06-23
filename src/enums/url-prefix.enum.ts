@@ -1,4 +1,4 @@
-export enum UrlPrefixEnum {
+export enum UrlPrefix {
     ADMIN = "/admin",
     DRIVER = "/driver"
 }

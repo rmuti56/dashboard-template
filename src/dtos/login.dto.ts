@@ -1,14 +1,14 @@
-import { ValidationMessage } from "@/enums/validation-message.enum";
+import { VALIDATION_MESSAGES } from "@/constants/validation-message.constant";
 import { IsNotEmpty } from "class-validator";
 
 export class LoginDto {
   @IsNotEmpty({
-    message: ValidationMessage.REQUIRED,
+    message: VALIDATION_MESSAGES.REQUIRED,
   })
   username: string;
 
   @IsNotEmpty({
-    message: ValidationMessage.REQUIRED,
+    message: VALIDATION_MESSAGES.REQUIRED,
   })
   password: string;
 }

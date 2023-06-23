@@ -1,4 +1,4 @@
-import { ValidationMessage } from "@/enums/validation-message.enum";
+
 import "reflect-metadata";
 import { Type } from "class-transformer";
 import {
@@ -8,23 +8,24 @@ import {
   MinLength,
   ValidateNested,
 } from "class-validator";
+import { VALIDATION_MESSAGES } from "@/constants/validation-message.constant";
 
 export class ProductDto {
   id?: string;
 
   @IsNotEmpty({
-    message: ValidationMessage.REQUIRED,
+    message: VALIDATION_MESSAGES.REQUIRED,
   })
   name: string;
 
   @IsNotEmpty({
-    message: ValidationMessage.REQUIRED,
+    message: VALIDATION_MESSAGES.REQUIRED,
   })
   @MaxLength(250)
   description: string;
 
   @IsNotEmpty({
-    message: ValidationMessage.REQUIRED,
+    message: VALIDATION_MESSAGES.REQUIRED,
   })
   price: number;
 
@@ -36,13 +37,13 @@ export class ProductDto {
 
 export class ProductOptionDto {
   @IsNotEmpty({
-    message: ValidationMessage.REQUIRED,
+    message: VALIDATION_MESSAGES.REQUIRED,
   })
   @MinLength(3)
   label: string;
 
   @IsNotEmpty({
-    message: ValidationMessage.REQUIRED,
+    message: VALIDATION_MESSAGES.REQUIRED,
   })
   value: string;
 }

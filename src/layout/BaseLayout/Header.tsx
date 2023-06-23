@@ -1,8 +1,9 @@
 import { Menu } from "@mui/icons-material";
-import { Avatar, Box, ButtonBase } from "@mui/material";
+import { Avatar, Box, ButtonBase, Divider } from "@mui/material";
 import { useTheme } from "@mui/material/styles";
 import LogoSection from "./LogoSection";
 import ProfileSection from "./ProfileSection";
+import LocaleSwitcherSection from "./LocaleSwitcherSection";
 
 type HeaderProps = {
   handleLeftDrawerToggle?: () => void;
@@ -21,6 +22,7 @@ const Header = ({ handleLeftDrawerToggle }: HeaderProps): JSX.Element => {
             width: "auto",
           },
         }}
+        gap={0.5}
       >
         <Box
           component="span"
@@ -51,6 +53,13 @@ const Header = ({ handleLeftDrawerToggle }: HeaderProps): JSX.Element => {
       </Box>
       <Box sx={{ flexGrow: 1 }} />
       <Box sx={{ flexGrow: 1 }} />
+      <LocaleSwitcherSection />
+      <Divider
+        sx={{ mx: 0.5 }}
+        orientation="vertical"
+        variant="middle"
+        flexItem
+      />
       <ProfileSection />
     </>
   );

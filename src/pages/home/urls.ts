@@ -1,5 +1,5 @@
-import { UrlPrefixEnum } from "@/enums/url-prefix.enum";
+import { UrlPrefix } from "@/enums/url-prefix.enum";
 
 export const homePagePath = "dashboard";
 
-export const homePageUrl = `${UrlPrefixEnum.ADMIN}/${homePagePath}`;
+export const homePageUrl = `${UrlPrefix.ADMIN}/${homePagePath}`;
