@@ -1,4 +1,3 @@
-
 import "reflect-metadata";
 import { Type } from "class-transformer";
 import {
@@ -9,6 +8,7 @@ import {
   ValidateNested,
 } from "class-validator";
 import { VALIDATION_MESSAGES } from "@/constants/validation-message.constant";
+import { Match } from "@/decorators/match.decorator";
 
 export class ProductDto {
   id?: string;
@@ -46,4 +46,12 @@ export class ProductOptionDto {
     message: VALIDATION_MESSAGES.REQUIRED,
   })
   value: string;
+
+  @Match("value", {
+    message: "Must match with value",
+  })
+  @IsNotEmpty({
+    message: VALIDATION_MESSAGES.REQUIRED,
+  })
+  confirmValue: string;
 }

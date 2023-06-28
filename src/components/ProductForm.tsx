@@ -30,6 +30,7 @@ const ProductForm = ({
     register,
     formState: { errors },
     control,
+    trigger,
     handleSubmit,
   } = useForm<ProductDto>({
     defaultValues: initialValues,
@@ -110,8 +111,23 @@ const ProductForm = ({
               placeholder="Value"
               disabled={!isEditable}
               {...register(`options.${index}.value`)}
+              onChange={(e) => {
+                register(`options.${index}.value`).onChange(e)
+                trigger(`options.${index}.confirmValue`);
+              }}
               error={!!errors.options?.[index]?.value}
               helperText={errors.options?.[index]?.value?.message}
+            />
+            <TextField
+              fullWidth
+              required
+              margin="normal"
+              label="Confirm Value"
+              placeholder="Confirm Value"
+              disabled={!isEditable}
+              {...register(`options.${index}.confirmValue`)}
+              error={!!errors.options?.[index]?.confirmValue}
+              helperText={errors.options?.[index]?.confirmValue?.message}
             />
             <Button type="button" onClick={() => remove(index)}>
               Remove
@@ -125,6 +141,7 @@ const ProductForm = ({
             append({
               label: "",
               value: "",
+              confirmValue: "",
             })
           }
         >
